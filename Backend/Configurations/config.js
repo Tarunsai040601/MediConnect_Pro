@@ -1,21 +1,22 @@
-const { Pool } = require("pg");
-const database = require("../knexfile.js");
-
+// data base connection
+const KnexConfig=require('../knexfile.js')
+const knex=require('knex')(KnexConfig.development)
+const dotenv = require("dotenv").config({ quiet: true });
 const dataBaseconnection = async () => {
   try {
-    const data = new Pool(database.development.connection);
-
-    await data.connect();
-
+    await knex.raw("SELECT 1");
     console.log(
-      `Database connected successfully on port ${database.development.connection.port}`
+      `Database connected successfully... on the port ${process.env.port}`
     );
   } catch (error) {
     console.log(
-      `Database connection issue on port ${database.development.connection.port}`
+      `Database connection failed... on the port ${process.env.port}`
     );
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 
-module.exports = dataBaseconnection;
+module.exports = {
+  knex,
+  dataBaseconnection,
+};
