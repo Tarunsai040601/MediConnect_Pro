@@ -3,6 +3,8 @@ const { knex } = require("../../Configurations/config.js");
 const bcryptjs = require("bcryptjs");
 const table_name = "AuthDetails";
 const SchemaName = "HospitalManagement_Sysytem";
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv").config({ quiet: true });
 
 // register Services
 const Register = async (req, res) => {
@@ -112,13 +114,21 @@ const Login = async (req, res) => {
         message: "invaild details",
       });
     }
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "login sucessfully",
-        details: { id: Found.id, email: Found.Email },
-      });
+    // token display payload data
+    const playLoad = {
+      id: Found.id,
+      name: Found.Name,
+      email: Found.Email,
+      role: Found.Role,
+    };
+    // token
+    const token = jwt.sign(playLoad, process.env.MYTOKEN, { expiresIn: "1d" });
+    res.status(200).json({
+      success: true,
+      message: "login sucessfully",
+      details: { id: Found.id, email: Found.Email },
+      tokenDetails:{token}
+    });
   } catch (error) {
     console.log("error_data:", error);
     return res.status(500).json({ success: false, err_message: error.message });
