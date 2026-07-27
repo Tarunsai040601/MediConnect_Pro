@@ -1,9 +1,25 @@
-const{knex}=require("../../Configurations/config.js")
+const { knex } = require("../../Configurations/config.js");
 const table_name = "AuthDetails";
 const SchemaName = "HospitalManagement_Sysytem";
 const bcryptjs = require("bcryptjs");
 // get doctor details
-const GetDoctors = () => {};
+const GetDoctors = async (req, res) => {
+  try {
+    const getAllDoctors = await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Role: "Doctor" })
+      .select("*");
+    console.log("getAllDoctors:", getAllDoctors);
+    res.status(200).json({
+      success: true,
+      message: "All doctors details",
+      details: getAllDoctors,
+    });
+  } catch (error) {
+    console.log("error_data:", error);
+    return res.status(500).json({ success: false, err_message: error.message });
+  }
+};
 // create doctors
 const CreateDoctor = async (req, res) => {
   try {
@@ -56,7 +72,7 @@ const CreateDoctor = async (req, res) => {
       .returning("*");
     return res.status(200).json({
       success: true,
-      message:"Doctor created sucessfully",
+      message: "Doctor created sucessfully",
       UserDetails: {
         Name: setUser[0].Name,
         Email: setUser[0].Email,
@@ -68,9 +84,119 @@ const CreateDoctor = async (req, res) => {
     return res.status(500).json({ success: false, err_message: error.message });
   }
 };
-const updateDoctor = () => {};
-const GetDoctorById = () => {};
-const DeleteDoctor = () => {};
+const updateDoctor = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const { Name, Email, Password, Role } = req.body;
+
+    const checkDoctor = await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Name: name, Role: "Doctor" })
+      .first();
+
+    if (!checkDoctor) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+
+    let updateData = {};
+
+    if (Name) updateData.Name = Name;
+    if (Email) updateData.Email = Email;
+    if (Role) updateData.Role = Role;
+
+    if (Password) {
+      const PasswordHash = await bcryptjs.hash(Password, 10);
+      updateData.Password = PasswordHash;
+    }
+
+    const updatedDoctor = await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Name: name, Role: "Doctor" })
+      .update(updateData)
+      .returning(["Name", "Email", "Role"]);
+
+    return res.status(200).json({
+      success: true,
+      message: "Doctor updated successfully",
+      details: updatedDoctor[0],
+    });
+  } catch (error) {
+    console.log("error:", error);
+    return res.status(500).json({
+      success: false,
+      err_message: error.message,
+    });
+  }
+};
+const GetDoctorById = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    const doctor = await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Name: name, Role: "Doctor" })
+      .first();
+
+    if (!doctor) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Doctor details",
+      details: {
+        Name: doctor.Name,
+        Email: doctor.Email,
+        Role: doctor.Role,
+      },
+    });
+  } catch (error) {
+    console.log("error:", error);
+    return res.status(500).json({
+      success: false,
+      err_message: error.message,
+    });
+  }
+};
+const DeleteDoctor = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    const doctor = await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Name: name, Role: "Doctor" })
+      .first();
+
+    if (!doctor) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+
+    await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Name: name, Role: "Doctor" })
+      .del();
+
+    return res.status(200).json({
+      success: true,
+      message: "Doctor deleted successfully",
+    });
+  } catch (error) {
+    console.log("error:", error);
+    return res.status(500).json({
+      success: false,
+      err_message: error.message,
+    });
+  }
+};
 
 // module export
 module.exports = {
