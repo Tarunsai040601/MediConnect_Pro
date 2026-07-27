@@ -84,6 +84,7 @@ const CreateDoctor = async (req, res) => {
     return res.status(500).json({ success: false, err_message: error.message });
   }
 };
+// update doctor
 const updateDoctor = async (req, res) => {
   try {
     const { name } = req.params;
@@ -131,6 +132,7 @@ const updateDoctor = async (req, res) => {
     });
   }
 };
+// get doctor by id
 const GetDoctorById = async (req, res) => {
   try {
     const { name } = req.params;
@@ -164,6 +166,7 @@ const GetDoctorById = async (req, res) => {
     });
   }
 };
+// delete doctor
 const DeleteDoctor = async (req, res) => {
   try {
     const { name } = req.params;
@@ -197,6 +200,24 @@ const DeleteDoctor = async (req, res) => {
     });
   }
 };
+// get all doctor without token
+const FetchallDoctors = async (req, res) => {
+  try {
+    const getAllDoctors = await knex(table_name)
+      .withSchema(SchemaName)
+      .where({ Role: "Doctor" })
+      .select("*");
+    console.log("getAllDoctors:", getAllDoctors);
+    res.status(200).json({
+      success: true,
+      message: "All doctors details",
+      details: getAllDoctors,
+    });
+  } catch (error) {
+    console.log("error_data:", error);
+    return res.status(500).json({ success: false, err_message: error.message });
+  }
+};
 
 // module export
 module.exports = {
@@ -205,4 +226,5 @@ module.exports = {
   updateDoctor,
   GetDoctorById,
   DeleteDoctor,
+  FetchallDoctors,
 };
