@@ -1,0 +1,396 @@
+.appointmentBookingPage {
+  background: var(--bg-primary);
+}
+
+.bookingWizardContainer {
+  max-width: 900px;
+}
+
+/* Wizard Steps Indicator bar */
+.wizardProgress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  border-radius: var(--radius-lg);
+  margin-top: -3.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 10;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.stepNum {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: all var(--transition-base);
+  font-size: 1rem;
+}
+
+.stepLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.progressStep.active {
+  color: var(--primary);
+}
+
+.progressStep.active .stepNum {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+}
+
+.progressStep.completed {
+  color: var(--accent);
+}
+
+.progressStep.completed .stepNum {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--white);
+}
+
+.progressLine {
+  flex: 1;
+  height: 2px;
+  background: var(--border-color);
+  margin: 0 1rem;
+  margin-top: -1.5rem;
+  z-index: 1;
+}
+
+/* Form Container styles */
+.wizardFormCard {
+  padding: 3rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.wizardStepContent h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.stepIcon {
+  font-size: 1.75rem;
+}
+
+.bookingFormGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.bookingField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bookingField label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.bookingField select, .bookingField input, .bookingField textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast);
+}
+
+.bookingField select:focus, .bookingField input:focus, .bookingField textarea:focus {
+  border-color: var(--primary);
+}
+
+/* Selected doctor snapshot */
+.selectedDocShortProfile {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  align-items: center;
+  margin-bottom: 2rem;
+  background: rgba(14, 165, 233, 0.05);
+}
+
+.docShortImg {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 3px solid var(--primary-light);
+}
+
+.selectedDocShortProfile h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.selectedDocShortProfile p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Calendar dates selectors */
+.bookingCalendarSection {
+  margin-bottom: 2.5rem;
+}
+
+.bookingCalendarSection h4, .bookingTimeSlotsSection h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.customCalendarStrip {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for calendar strip */
+.customCalendarStrip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.customCalendarStrip::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.customCalendarStrip::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 4px;
+}
+
+.calendarDayNode {
+  flex-shrink: 0;
+  width: 80px;
+  padding: 1rem 0.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.calMonth {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.calNum {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.calDay {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.calendarDayNode:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.calendarDayNode.selected {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 8px 16px rgba(14, 165, 233, 0.25);
+}
+
+.calendarDayNode.selected .calMonth,
+.calendarDayNode.selected .calNum,
+.calendarDayNode.selected .calDay {
+  color: var(--white);
+}
+
+/* Time Slots Grid selectors */
+.timeSlotsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.timeSlotNode {
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.slotClock {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.timeSlotNode:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.timeSlotNode.selected {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.timeSlotNode.selected .slotClock {
+  color: var(--white);
+}
+
+.timeSlotNode.booked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--gray-50);
+  border-color: var(--border-color);
+  color: var(--gray-400);
+}
+
+[data-theme="dark"] .timeSlotNode.booked {
+  background: var(--gray-700);
+  color: var(--gray-500);
+}
+
+.bookedTag {
+  font-size: 0.7rem;
+  background: #ef4444;
+  color: var(--white);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  margin-left: 0.25rem;
+}
+
+/* Step 3 Form details styling */
+.bookingFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.textBlockField {
+  margin-bottom: 2rem;
+}
+
+.appointmentSummaryPanel {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  margin-bottom: 2.5rem;
+}
+
+.appointmentSummaryPanel h4 {
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.summaryGrid div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.summaryGrid span {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.summaryGrid strong {
+  color: var(--text-primary);
+}
+
+.summaryFee {
+  color: var(--accent) !important;
+  font-size: 1.2rem;
+}
+
+/* Wizard actions buttons alignment */
+.wizardActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+/* Responsiveness media queries */
+@media (max-width: 768px) {
+  .bookingFormGroup, .bookingFormGrid, .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+  .timeSlotsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wizardProgress {
+    padding: 1rem;
+  }
+  .stepLabel {
+    display: none;
+  }
+  .wizardFormCard {
+    padding: 1.5rem;
+  }
+}

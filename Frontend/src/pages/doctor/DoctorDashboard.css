@@ -1,0 +1,65 @@
+.doctorDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.docBanner {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+.queueActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.approveBtn {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.approveBtn:hover {
+  text-decoration: underline;
+}
+
+.rejectBtn {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.rejectBtn:hover {
+  text-decoration: underline;
+}
+
+.completeBtn {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.completeBtn:hover {
+  text-decoration: underline;
+}
+
+.actionDone {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.actionCancelled {
+  color: #dc2626;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

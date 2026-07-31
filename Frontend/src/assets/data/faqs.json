@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "question": "How do I book an appointment?",
+    "answer": "You can book an appointment through our online portal by selecting a department, choosing your preferred doctor, and picking an available time slot. Alternatively, call our helpline at +1 (555) 000-1234."
+  },
+  {
+    "id": 2,
+    "question": "What insurance plans do you accept?",
+    "answer": "We accept most major insurance providers including Blue Cross, Aetna, Cigna, UnitedHealthcare, and Medicare. Contact our billing department for specific coverage details."
+  },
+  {
+    "id": 3,
+    "question": "What are your visiting hours?",
+    "answer": "General visiting hours are 10:00 AM to 8:00 PM daily. ICU visiting hours are 11:00 AM to 1:00 PM and 5:00 PM to 7:00 PM. Emergency department is open 24/7."
+  },
+  {
+    "id": 4,
+    "question": "How do I access my medical records?",
+    "answer": "Log in to your patient dashboard to view and download your medical records, prescriptions, lab results, and appointment history securely."
+  },
+  {
+    "id": 5,
+    "question": "Do you offer telemedicine consultations?",
+    "answer": "Yes, we offer virtual consultations for follow-up visits and non-emergency cases. Book a telemedicine slot through the appointment booking page."
+  },
+  {
+    "id": 6,
+    "question": "What should I bring for my first visit?",
+    "answer": "Please bring a valid ID, insurance card, list of current medications, previous medical records if available, and any referral documents from your primary care physician."
+  }
+]

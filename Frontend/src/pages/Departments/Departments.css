@@ -1,0 +1,64 @@
+.departmentsPage {
+  overflow-x: hidden;
+}
+
+.deptHero {
+  position: relative;
+}
+
+.deptHero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.deptStats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  padding: 1.5rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.deptStat {
+  text-align: center;
+}
+
+.deptStat strong {
+  display: block;
+  font-size: 2rem;
+  font-family: var(--font-heading);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.deptStat span {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.deptGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+@media (max-width: 480px) {
+  .deptStats {
+    gap: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .deptStat strong {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,302 @@
+.healthTipsPage {
+  background: var(--bg-primary);
+}
+
+.blogFiltersBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  margin-top: -3.5rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-sm);
+  gap: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.blogSearch {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  flex: 1;
+  max-width: 380px;
+}
+
+.blogSearch input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.categoryFilters {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.categoryFilters::-webkit-scrollbar {
+  height: 4px;
+}
+
+.categoryFilters::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 4px;
+}
+
+.catFilterBtn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.catFilterBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.catFilterBtn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+}
+
+/* Grid layout & cards */
+.noArticles {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: var(--radius-xl);
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.articleCard {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.articleImgWrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.articleImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.articleCard:hover .articleImg {
+  transform: scale(1.06);
+}
+
+.articleCategoryTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.articleBody {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.articleMeta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.articleBody h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.articleBody p {
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreBtn {
+  margin-top: auto;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.readMoreBtn:hover {
+  color: var(--primary-dark);
+}
+
+/* Modal Popup Window details */
+.articleModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.articleModalContent {
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  border-radius: var(--radius-xl);
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+}
+
+.closeModalBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--white);
+  border: none;
+  font-size: 1.5rem;
+  line-height: 36px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background var(--transition-fast);
+}
+
+.closeModalBtn:hover {
+  background: rgba(220, 38, 38, 0.8);
+}
+
+.modalImgWrap {
+  position: relative;
+  height: 300px;
+}
+
+.modalImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalCatTag {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.modalTextBody {
+  padding: 2.5rem;
+  background: var(--bg-secondary);
+}
+
+.modalTextBody h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.modalReadTime {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.articleContentText {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.articleContentText p {
+  margin-bottom: 1.25rem;
+}
+
+.articleContentText p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsiveness overrides */
+@media (max-width: 900px) {
+  .blogFiltersBar {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: -2rem;
+  }
+  .blogSearch {
+    max-width: 100%;
+  }
+  .articlesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .modalTextBody {
+    padding: 1.5rem;
+  }
+  .modalImgWrap {
+    height: 200px;
+  }
+}

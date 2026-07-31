@@ -1,0 +1,41 @@
+.adminLogin {
+  width: 100%;
+}
+
+.adminLogin .authCard h2 {
+  color: var(--gray-700);
+}
+
+[data-theme="dark"] .adminLogin .authCard h2 {
+  color: var(--gray-100);
+}
+
+.adminLogin .demoHint {
+  background: rgba(51, 65, 85, 0.08);
+  border: 1px solid rgba(51, 65, 85, 0.15);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.adminLogin .demoHint strong {
+  color: var(--gray-600);
+}
+
+[data-theme="dark"] .adminLogin .demoHint strong {
+  color: var(--gray-200);
+}
+
+.adminLogin .loginLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.adminLogin .loginLinks .divider {
+  color: var(--gray-300);
+}

@@ -1,0 +1,15 @@
+.patientRegistration {
+  width: 100%;
+}
+
+.patientRegistration .authCard {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.patientRegistration .authCard h2 {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

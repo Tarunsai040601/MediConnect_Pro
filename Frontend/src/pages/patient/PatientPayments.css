@@ -1,0 +1,101 @@
+.patientPayments {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.paymentsListCard {
+  padding: 2rem;
+}
+
+.paymentsTableWrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.invDetailsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.invIcon {
+  font-size: 1.5rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.invoiceCostText {
+  color: var(--text-primary);
+}
+
+.statusBadge.paid {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent);
+}
+
+.statusBadge.unpaid {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.invoiceActions {
+  display: flex;
+  align-items: center;
+}
+
+.downloadInvoiceBtn {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.downloadInvoiceBtn:hover {
+  text-decoration: underline;
+}
+
+/* Payment gateway simulator styles */
+.paymentModal {
+  max-width: 500px !important;
+}
+
+.payAmountLabel {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.payAmountLabel strong {
+  color: var(--accent);
+  font-size: 1.35rem;
+  font-family: var(--font-heading);
+}
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cardRowGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.paymentFormControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+  margin-top: 0.5rem;
+}

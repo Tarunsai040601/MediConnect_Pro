@@ -1,0 +1,49 @@
+.card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.body {
+  padding: 1.5rem;
+}
+
+.footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--gray-50);
+}
+
+[data-theme="dark"] .footer {
+  background: var(--gray-700);
+}
+
+.noHover:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}

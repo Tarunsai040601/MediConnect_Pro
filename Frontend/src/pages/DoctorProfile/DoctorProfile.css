@@ -1,0 +1,355 @@
+.doctorProfilePage {
+  background: var(--bg-primary);
+}
+
+.profileHero {
+  padding-bottom: 2rem;
+}
+
+.profileLayout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Left Column Styling */
+.profileLeftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profileIntroCard {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.profileImgContainer {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+  border-radius: var(--radius-full);
+  border: 4px solid var(--primary-light);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.profileBigImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.experienceBadge {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.2rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.profileIntroCard h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.profileDeptLabel {
+  display: inline-block;
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--primary);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.overallStars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.15rem;
+  color: #f59e0b;
+}
+
+.stars .filled {
+  color: #f59e0b;
+}
+
+.stars .empty {
+  color: var(--gray-300);
+}
+
+.profileContactInfo {
+  border-top: 1px solid var(--border-color);
+  padding: 1.25rem 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.contactIcon {
+  color: var(--primary);
+}
+
+.quickMetricsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.metricBox {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metricBox strong {
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-family: var(--font-heading);
+}
+
+.metricBox span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Right Column Styling */
+.profileRightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profileDetailsCard {
+  padding: 2.5rem;
+}
+
+.profileDetailsCard h3, .profileReviewsCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  color: var(--primary);
+}
+
+.doctorBioText {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.academicQualifications {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.qualificationItem {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.academicIcon {
+  font-size: 1.75rem;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.qualificationItem h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.qualificationItem p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Reviews Panel & Form */
+.profileReviewsCard {
+  padding: 2.5rem;
+}
+
+.addReviewForm {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.addReviewForm h4 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.formRowGroup {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.formField label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.formField input, .formField select, .formField textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.formField input:focus, .formField select:focus, .formField textarea:focus {
+  border-color: var(--primary);
+}
+
+.reviewsFeed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reviewItemRow {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.reviewItemRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.reviewDate {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.reviewStars {
+  display: flex;
+  gap: 0.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.reviewStars svg {
+  font-size: 0.85rem;
+}
+
+.reviewStars .filled {
+  color: #f59e0b;
+}
+
+.reviewStars .empty {
+  color: var(--gray-300);
+}
+
+.reviewComment {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Error States */
+.doctorNotFoundPage {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.errorBox {
+  max-width: 500px;
+  text-align: center;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.errorBox h2 {
+  color: #ef4444;
+}
+
+.errorBox p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .profileLayout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .profileLeftCol {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .formRowGroup {
+    grid-template-columns: 1fr;
+  }
+  .profileDetailsCard, .profileReviewsCard {
+    padding: 1.5rem;
+  }
+}

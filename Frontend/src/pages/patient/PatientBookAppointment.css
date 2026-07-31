@@ -1,0 +1,291 @@
+.patientBookAppointment {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashPageHeader h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.dashPageHeader p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Step strip */
+.bookingStepsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.stepNode {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.stepNode.active {
+  color: var(--primary);
+}
+
+.stepNode.completed {
+  color: var(--accent);
+}
+
+.stepNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.stepNode.active .stepNum {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.stepNode.completed .stepNum {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+.stepLine {
+  flex: 1;
+  height: 2px;
+  background: var(--border-color);
+  margin: 0 1rem;
+}
+
+/* Card details */
+.bookingWizardCard {
+  padding: 2.5rem;
+}
+
+.stepInner h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.textareaField {
+  grid-column: span 2;
+}
+
+/* Doctor brief card */
+.docMiniCard {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(14, 165, 233, 0.03);
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.docMiniCard img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-light);
+}
+
+.docMiniCard h4 {
+  font-size: 1.05rem;
+}
+
+.docMiniCard p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.docMiniCard small {
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+/* Calendar strip and times */
+.calendarSection, .timeSlotsSection {
+  margin-bottom: 1.75rem;
+}
+
+.calendarSection h4, .timeSlotsSection h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.calendarStrip {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+}
+
+.calDayBtn {
+  flex-shrink: 0;
+  width: 70px;
+  padding: 0.75rem 0.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
+}
+
+.calDayBtn .month {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.calDayBtn .num {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.calDayBtn .day {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.calDayBtn:hover {
+  border-color: var(--primary);
+}
+
+.calDayBtn.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.calDayBtn.selected .month, .calDayBtn.selected .day {
+  color: var(--white);
+}
+
+/* Slots grid */
+.slotsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.slotBtn {
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.clockIcon {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.slotBtn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.slotBtn.selected {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.slotBtn.selected .clockIcon {
+  color: var(--white);
+}
+
+.slotBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--gray-50);
+  color: var(--gray-400);
+}
+
+/* Summary panel before click */
+.summaryPanel {
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(16, 185, 129, 0.03);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  margin-bottom: 2rem;
+}
+
+.summaryPanel h4 {
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.summaryRowGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* Wizard controls row */
+.wizardControls {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .fieldsGrid, .summaryRowGrid {
+    grid-template-columns: 1fr;
+  }
+  .textareaField {
+    grid-column: span 1;
+  }
+  .slotsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bookingStepsBar span:not(.stepNum) {
+    display: none;
+  }
+}

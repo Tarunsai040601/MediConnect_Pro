@@ -1,122 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+
+// Lazy loaded pages
+const Home = lazy(() => import('./pages/Home/Home'));
+const About = lazy(() => import('./pages/About/About'));
+const Contact = lazy(() => import('./pages/ContactUs/ContactUs'));
+const Services = lazy(() => import('./pages/Services/Services'));
+const Doctors = lazy(() => import('./pages/Doctors/Doctors'));
+const BookAppointment = lazy(() => import('./pages/BookAppointment/BookAppointment'));
+const Login = lazy(() => import('./pages/Login/Login'));
+const Signup = lazy(() => import('./pages/Signup/Signup'));
+
+const App = () => {
+  const location = useLocation();
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location]);
+
+  // Route-based metadata (optional)
+  const getPageTitle = () => {
+    switch (location.pathname) {
+      case '/': return 'MediConnect Pro - Premium Healthcare System';
+      case '/about': return 'About Us - MediConnect Pro';
+      case '/contact': return 'Contact Us - MediConnect Pro';
+      case '/services': return 'Our Services - MediConnect Pro';
+      case '/doctors': return 'Meet Our Doctors - MediConnect Pro';
+      case '/book-appointment': return 'Book Appointment - MediConnect Pro';
+      case '/login': return 'Login - MediConnect Pro';
+      case '/signup': return 'Create Account - MediConnect Pro';
+      default: return 'MediConnect Pro';
+    }
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-container">
+      <Navbar />
 
-      <div className="ticks"></div>
+      {/* Suspense for lazy loading */}
+      <Suspense fallback={<div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><LoadingSpinner /></div>}>
+        <div className="main-content">
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              {/* Redirect root to home */}
+              <Route path="/" element={<Navigate to="/home" replace />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+              {/* All routes */}
+              <Route path="/home" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/doctors" element={<Doctors />} />
+              <Route path="/book-appointment" element={<BookAppointment />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+
+              {/* 404 */}
+              <Route path="*" element={<Navigate to="/home" replace />} />
+            </Routes>
+          </AnimatePresence>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      </Suspense>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
-}
+      <Footer />
+    </div>
+  );
+};
 
-export default App
+export default App;

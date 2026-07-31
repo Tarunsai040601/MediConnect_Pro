@@ -1,0 +1,85 @@
+.patientReports {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reportsListCard {
+  padding: 2rem;
+}
+
+.reportsTableWrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.repNameWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.repFileIcon {
+  font-size: 1.5rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* Report Status Badge styles */
+.repBadge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.repBadge.ready {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent);
+}
+
+.repBadge.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.reportActionBtns {
+  display: flex;
+  gap: 1rem;
+}
+
+.viewRepBtn, .downloadRepBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: color var(--transition-fast);
+}
+
+.viewRepBtn {
+  color: var(--primary);
+}
+
+.viewRepBtn:hover {
+  color: var(--primary-dark);
+}
+
+.downloadRepBtn {
+  color: var(--accent);
+}
+
+.downloadRepBtn:hover {
+  color: var(--accent-light);
+}
+
+.pendingNotice {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}

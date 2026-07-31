@@ -1,0 +1,302 @@
+.doctorsListingPage {
+  background: var(--bg-primary);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb span {
+  opacity: 0.6;
+}
+
+/* Page Hero standard styling */
+.pageHero {
+  position: relative;
+  padding: calc(var(--navbar-height) + 3rem) 0 4rem;
+  background: var(--gradient-hero);
+  text-align: center;
+  overflow: hidden;
+}
+
+.pageHero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pageHero p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Filter Bar styles */
+.searchFilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  margin-top: -3rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 10;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+}
+
+.searchGroup {
+  flex: 2;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  gap: 0.75rem;
+}
+
+.searchIcon {
+  color: var(--gray-400);
+}
+
+.searchGroup input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--text-primary);
+}
+
+.filterGroup {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  gap: 0.5rem;
+}
+
+.filterIcon {
+  color: var(--gray-400);
+  font-size: 0.9rem;
+}
+
+.filterGroup select {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.clearBtn {
+  color: #ef4444;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.clearBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.listingResultsInfo {
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* No results block */
+.noResultsBox {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.noResultsBox h3 {
+  font-size: 1.5rem;
+}
+
+.noResultsBox p {
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin-bottom: 1rem;
+}
+
+/* Listing Grid and Doctor card */
+.listingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.doctorSearchCard {
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.docListImgWrap {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.docListImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.doctorSearchCard:hover .docListImg {
+  transform: scale(1.06);
+}
+
+.docExperience {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.docListBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.docListMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.docCategory {
+  font-size: 0.8rem;
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--primary);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.docRatings {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.docListBody h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.docBio {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.docDetailsList {
+  margin-bottom: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.detailRow span:first-child {
+  color: var(--text-secondary);
+}
+
+.detailRow strong {
+  color: var(--accent);
+}
+
+.docCardActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.viewProfileBtn {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.viewProfileBtn:hover {
+  color: var(--primary-dark);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .listingGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .searchFilterBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .searchGroup, .filterGroup {
+    flex: none;
+    width: 100%;
+  }
+  .listingGrid {
+    grid-template-columns: 1fr;
+  }
+}

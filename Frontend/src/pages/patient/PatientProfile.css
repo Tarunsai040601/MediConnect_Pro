@@ -1,0 +1,76 @@
+.patientProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profileFormCard {
+  padding: 3rem 2.5rem;
+}
+
+.profileHeaderAvatar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.avatarCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+.profileHeaderAvatar h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.15rem;
+}
+
+.profileHeaderAvatar span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.addressField {
+  grid-column: span 2;
+}
+
+.profileFormControls {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .addressField {
+    grid-column: span 1;
+  }
+  .profileFormCard {
+    padding: 1.5rem;
+  }
+}
