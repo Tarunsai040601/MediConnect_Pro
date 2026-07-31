@@ -7,7 +7,7 @@ const GetDoctors = async (req, res) => {
   try {
     const getAllDoctors = await knex(table_name)
       .withSchema(SchemaName)
-      .where({ Role: "Doctor" })
+      .where({ Role: "Doctor",CreatedBy: req.users.id })
       .select("*");
     console.log("getAllDoctors:", getAllDoctors);
     res.status(200).json({
@@ -68,6 +68,7 @@ const CreateDoctor = async (req, res) => {
         Email,
         Role,
         Password: PasswordHashing,
+        CreatedBy: req.users.id,
       })
       .returning("*");
     return res.status(200).json({
@@ -92,7 +93,7 @@ const updateDoctor = async (req, res) => {
 
     const checkDoctor = await knex(table_name)
       .withSchema(SchemaName)
-      .where({ Name: name, Role: "Doctor" })
+      .where({ Name: name, Role: "Doctor", CreatedBy: req.users.id })
       .first();
 
     if (!checkDoctor) {
@@ -115,7 +116,7 @@ const updateDoctor = async (req, res) => {
 
     const updatedDoctor = await knex(table_name)
       .withSchema(SchemaName)
-      .where({ Name: name, Role: "Doctor" })
+      .where({ Name: name, Role: "Doctor", CreatedBy: req.users.id })
       .update(updateData)
       .returning(["Name", "Email", "Role"]);
 
@@ -139,7 +140,7 @@ const GetDoctorById = async (req, res) => {
 
     const doctor = await knex(table_name)
       .withSchema(SchemaName)
-      .where({ Name: name, Role: "Doctor" })
+      .where({ Name: name, Role: "Doctor", CreatedBy: req.users.id })
       .first();
 
     if (!doctor) {
@@ -173,7 +174,7 @@ const DeleteDoctor = async (req, res) => {
 
     const doctor = await knex(table_name)
       .withSchema(SchemaName)
-      .where({ Name: name, Role: "Doctor" })
+      .where({ Name: name, Role: "Doctor", CreatedBy: req.users.id })
       .first();
 
     if (!doctor) {
@@ -185,7 +186,7 @@ const DeleteDoctor = async (req, res) => {
 
     await knex(table_name)
       .withSchema(SchemaName)
-      .where({ Name: name, Role: "Doctor" })
+      .where({ Name: name, Role: "Doctor", CreatedBy: req.users.id })
       .del();
 
     return res.status(200).json({
