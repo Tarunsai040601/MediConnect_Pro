@@ -1,6 +1,0 @@
-[
-  { "id": 1, "label": "Expert Doctors", "value": 150, "suffix": "+" },
-  { "id": 2, "label": "Happy Patients", "value": 50000, "suffix": "+" },
-  { "id": 3, "label": "Departments", "value": 25, "suffix": "+" },
-  { "id": 4, "label": "Years of Excellence", "value": 30, "suffix": "+" }
-]
