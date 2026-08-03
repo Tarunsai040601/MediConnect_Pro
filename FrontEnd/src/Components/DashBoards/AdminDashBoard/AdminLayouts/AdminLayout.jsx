@@ -5,10 +5,7 @@ import AdminNavBar from "../AdminNavBar/AdminNavBar";
 const AdminLayout = () => {
   return (
     <>
-      <div className="admin-layout">
-        <AdminNavBar />
-      </div>
-
+      <AdminNavBar />
       <div className="page-content">
         <Outlet />
       </div>

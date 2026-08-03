@@ -31,16 +31,21 @@ const API_BASE = "http://localhost:8080/api";
 const PALETTE = ["#14B8A6", "#0B1F3A", "#FF6B6B", "#F5A623", "#6366F1", "#22C55E", "#EC4899"];
 
 // Groups an array of records by a key, falling back to "General" when missing.
+// Checks both lowercase and capitalized variants since the API returns
+// capitalized field names (Name, Email, Role) but doesn't currently send
+// a specialization field at all — this will keep bucketing under "General"
+// until the backend adds one.
 const groupBy = (arr, key) => {
   const list = Array.isArray(arr) ? arr : [];
+  const capKey = key.charAt(0).toUpperCase() + key.slice(1);
   return list.reduce((acc, item) => {
-    const k = (item && (item[key] || item.department || item.category)) || "General";
+    const k = (item && (item[key] || item[capKey] || item.department || item.category)) || "General";
     acc[k] = (acc[k] || 0) + 1;
     return acc;
   }, {});
 };
 
-// Unwraps common API response shapes: { doctors: [...] } | { data: [...] } | [...]
+// Unwraps common API response shapes: { details: [...] } | { doctors: [...] } | { data: [...] } | [...]
 const unwrap = (payload, ...keys) => {
   if (Array.isArray(payload)) return payload;
   if (!payload || typeof payload !== "object") return [];
@@ -70,10 +75,14 @@ const useCountUp = (end, duration = 1200) => {
 
 const StatNumber = ({ value }) => <>{useCountUp(value)}</>;
 
+// Pulls a display name off a record regardless of casing convention.
+const getName = (obj) => obj?.Name || obj?.name || obj?.fullName || "—";
+const getEmail = (obj) => obj?.Email || obj?.email || "—";
+
 const sortByRecent = (arr) =>
   [...arr].sort((a, b) => {
-    const da = new Date(a?.createdAt || a?.date || 0).getTime();
-    const db = new Date(b?.createdAt || b?.date || 0).getTime();
+    const da = new Date(a?.createdAt || a?.created_at || a?.date || 0).getTime();
+    const db = new Date(b?.createdAt || b?.created_at || b?.date || 0).getTime();
     return db - da;
   });
 
@@ -100,10 +109,10 @@ const PatientOrbit = ({ patients }) => {
         const y = 50 + radius * Math.sin(angle) * 0.85;
         const delay = (i % 7) * 0.35;
         const size = 30 + (i % 4) * 4;
-        const label = p?.name || p?.fullName || p?.email || "Patient";
+        const label = getName(p) !== "—" ? getName(p) : getEmail(p);
         return (
           <div
-            key={p?._id || p?.email || i}
+            key={p?.id || p?._id || p?.Email || p?.email || i}
             className="orbit-bubble"
             style={{
               left: `${x}%`,
@@ -158,9 +167,9 @@ const AdminHome = () => {
       const payload = decoded.user || decoded.admin || decoded;
       setAdmin({
         id: payload.id || payload._id || payload.userId || payload.adminId || "N/A",
-        name: payload.name || payload.fullName || "Admin",
-        email: payload.email || "N/A",
-        role: payload.role || "admin",
+        name: payload.name || payload.Name || payload.fullName || "Admin",
+        email: payload.email || payload.Email || "N/A",
+        role: payload.role || payload.Role || "admin",
         image: payload.image || payload.avatar || "",
       });
     } catch (err) {
@@ -185,14 +194,17 @@ const AdminHome = () => {
           axios.get(`${API_BASE}/booking/allPatients`, { headers }),
         ]);
 
+        // API responses come back as { details: [...] } — also accept
+        // { doctors: [...] } / { data: [...] } / { patients: [...] } in case
+        // the shape differs across endpoints or changes later.
         if (createdRes.status === "fulfilled") {
-          setDoctorsCreated(unwrap(createdRes.value.data, "doctors", "data"));
+          setDoctorsCreated(unwrap(createdRes.value.data, "details", "doctors", "data"));
         }
         if (fetchRes.status === "fulfilled") {
-          setAllDoctors(unwrap(fetchRes.value.data, "doctors", "data"));
+          setAllDoctors(unwrap(fetchRes.value.data, "details", "doctors", "data"));
         }
         if (patientsRes.status === "fulfilled") {
-          setPatients(unwrap(patientsRes.value.data, "patients", "data"));
+          setPatients(unwrap(patientsRes.value.data, "details", "patients", "data"));
         }
 
         if (
@@ -381,12 +393,12 @@ const AdminHome = () => {
                   <tbody>
                     {recentDoctors.length ? (
                       recentDoctors.map((d, i) => (
-                        <tr key={d?._id || i}>
-                          <td>{d?.name || d?.fullName || "—"}</td>
-                          <td>{d?.specialization || "General"}</td>
+                        <tr key={d?.id || d?._id || i}>
+                          <td>{getName(d)}</td>
+                          <td>{d?.specialization || d?.Specialization || "General"}</td>
                           <td>
                             <span className={`status-pill ${d?.status === "inactive" ? "off" : "on"}`}>
-                              {d?.status || "active"}
+                              {d?.status || d?.Status || "active"}
                             </span>
                           </td>
                         </tr>
@@ -417,9 +429,9 @@ const AdminHome = () => {
                   <tbody>
                     {recentPatients.length ? (
                       recentPatients.map((p, i) => (
-                        <tr key={p?._id || i}>
-                          <td>{p?.name || p?.fullName || "—"}</td>
-                          <td className="email-cell">{p?.email || "—"}</td>
+                        <tr key={p?.id || p?._id || i}>
+                          <td>{getName(p)}</td>
+                          <td className="email-cell">{getEmail(p)}</td>
                           <td>{p?.doctorName || p?.department || "—"}</td>
                         </tr>
                       ))

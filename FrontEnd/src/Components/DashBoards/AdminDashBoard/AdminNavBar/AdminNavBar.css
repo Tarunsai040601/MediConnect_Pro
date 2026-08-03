@@ -1,180 +1,450 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* AdminNavBar.css
+   All selectors are scoped under .mca-nav / #mcaAdminNav so this file
+   cannot collide with class or id names used elsewhere in the app.
+   CSS variables are also scoped to the component instead of :root. */
+
+.mca-nav {
+  --mca-nav-bg: rgba(255, 255, 255, 0.85);
+  --mca-nav-blur: 16px;
+  --mca-primary: #2563eb;
+  --mca-primary-hover: #1d4ed8;
+  --mca-text-main: #1e293b;
+  --mca-text-muted: #64748b;
+  --mca-danger: #ef4444;
+  --mca-danger-hover: #dc2626;
+  --mca-nav-shadow: 0 2px 10px rgba(2, 6, 23, 0.04);
+  --mca-border: rgba(255, 255, 255, 0.3);
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  background: var(--mca-nav-bg);
+  backdrop-filter: blur(var(--mca-nav-blur));
+  -webkit-backdrop-filter: blur(var(--mca-nav-blur));
+  border-bottom: 1px solid var(--mca-border);
+  box-shadow: var(--mca-nav-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.22s ease;
 }
 
-.admin-navbar{
-    width:100%;
-    height:75px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 6%;
-
-    background:rgba(255,255,255,.95);
-    backdrop-filter:blur(20px);
-
-    box-shadow:0 5px 25px rgba(0,0,0,.08);
-
-    position:sticky;
-    top:0;
-    z-index:999;
-
-    transition:.4s;
+.mca-nav *,
+.mca-nav *::before,
+.mca-nav *::after {
+  box-sizing: border-box;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
+/* ---------- Brand / logo ---------- */
 
-    font-size:28px;
-    font-weight:700;
-    color:#1f4e79;
+.mca-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1001;
+  flex-shrink: 0;
 }
 
-.logo span{
-    font-size:22px;
+.mca-nav__brand:hover {
+  transform: scale(1.02);
 }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    list-style:none;
+.mca-nav__brand-icon {
+  font-size: 30px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  line-height: 1;
 }
 
-.nav-links li a{
-    text-decoration:none;
-    color:#444;
-    font-size:16px;
-    font-weight:600;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    padding:12px 18px;
-    border-radius:10px;
-
-    transition:.35s;
+.mca-nav__brand-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mca-text-main);
+  letter-spacing: -0.5px;
+  font-family: "Inter", system-ui, sans-serif;
+  white-space: nowrap;
 }
 
-.nav-links li a:hover{
-
-    background:#0d6efd;
-    color:white;
-
-    transform:translateY(-3px);
-
-    box-shadow:0 10px 20px rgba(13,110,253,.35);
+.mca-nav__brand-text b {
+  color: var(--mca-primary);
+  font-weight: 800;
 }
 
-.nav-links li .active{
-    background:#0d6efd;
-    color:white;
+/* ---------- Links ---------- */
+
+.mca-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
 }
 
-.logout-btn{
-
-    border:none;
-    padding:12px 22px;
-
-    border-radius:10px;
-
-    background:#dc3545;
-    color:white;
-
-    font-size:15px;
-    font-weight:600;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    transition:.35s;
+.mca-nav__item {
+  display: flex;
 }
 
-.logout-btn:hover{
-
-    background:#b91d2d;
-
-    transform:translateY(-3px);
-
-    box-shadow:0 10px 20px rgba(220,53,69,.35);
+.mca-nav__link {
+  text-decoration: none;
+  color: var(--mca-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  background: transparent;
+  box-shadow: none;
 }
 
-.menu-icon{
-
-    display:none;
-
-    font-size:28px;
-    cursor:pointer;
+.mca-nav__icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-/* Tablet */
-
-@media(max-width:900px){
-
-    .menu-icon{
-        display:block;
-    }
-
-    .nav-links{
-
-        position:absolute;
-
-        top:75px;
-        left:-100%;
-
-        width:100%;
-
-        background:white;
-
-        flex-direction:column;
-
-        padding:25px 0;
-
-        transition:.4s;
-
-        box-shadow:0 15px 30px rgba(0,0,0,.08);
-    }
-
-    .nav-links.active{
-        left:0;
-    }
-
-    .nav-links li{
-        width:90%;
-    }
-
-    .nav-links li a{
-        width:100%;
-        justify-content:center;
-    }
-
-    .logout-btn{
-        width:90%;
-        justify-content:center;
-    }
-
+.mca-nav__link:hover {
+  color: var(--mca-primary);
+  background: rgba(37, 99, 235, 0.06);
+  transform: translateY(-1px);
 }
 
-/* Mobile */
+.mca-nav__link:hover .mca-nav__icon {
+  transform: translateY(-1px);
+}
 
-@media(max-width:500px){
+.mca-nav__link.mca-is-current {
+  color: var(--mca-primary);
+  background: rgba(20, 184, 166, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  box-shadow: none;
+}
 
-    .logo span{
-        font-size:18px;
-    }
+.mca-nav__link.mca-is-current .mca-nav__icon {
+  color: var(--mca-primary);
+}
 
-    .logo{
-        font-size:22px;
-    }
+/* ---------- Logout button ---------- */
 
+.mca-nav__logout-btn {
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  padding: 8px 12px;
+  margin-left: 8px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mca-danger);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.mca-nav__logout-btn:hover {
+  background: var(--mca-danger);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.mca-nav__logout-btn:active {
+  transform: translateY(0);
+}
+
+.mca-nav__logout-desktop {
+  margin-left: 12px;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.mca-nav__item--mobile-logout {
+  display: none;
+}
+
+/* ---------- Hamburger toggle ---------- */
+
+.mca-nav__toggle {
+  display: none;
+  font-size: 28px;
+  color: var(--mca-text-main);
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 1002;
+}
+
+.mca-nav__toggle:hover {
+  color: var(--mca-primary);
+  transform: scale(1.1);
+}
+
+/* ---------- Mobile overlay ---------- */
+
+.mca-nav__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 999;
+}
+
+.mca-nav__overlay.mca-is-active {
+  opacity: 1;
+  visibility: visible;
+  backdrop-filter: blur(4px);
+}
+
+/* =========================================================
+   Responsive breakpoints
+   ========================================================= */
+
+/* Extra-large desktops / wide monitors */
+@media (min-width: 1600px) {
+  .mca-nav {
+    height: 76px;
+    padding: 0 3%;
+  }
+
+  .mca-nav__brand-text {
+    font-size: 24px;
+  }
+
+  .mca-nav__link {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+}
+
+/* Small laptops / narrow desktops: give links breathing room before the
+   hamburger breakpoint kicks in */
+@media (max-width: 1280px) and (min-width: 1151px) {
+  .mca-nav {
+    padding: 0 16px;
+  }
+
+  .mca-nav__links {
+    gap: 4px;
+  }
+
+  .mca-nav__link {
+    padding: 8px 8px;
+    font-size: 13px;
+  }
+
+  .mca-nav__link span {
+    display: inline;
+  }
+}
+
+/* Tablets & mobile: collapse into slide-out side menu */
+@media (max-width: 1150px) {
+  .mca-nav__toggle {
+    display: block;
+  }
+
+  .mca-nav {
+    padding: 0 20px;
+  }
+
+  .mca-nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    max-width: 86vw;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(255, 255, 255, 1);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 90px 20px 40px;
+    transition: transform 0.36s cubic-bezier(0.2, 0.8, 0.2, 1), right 0.36s;
+    transform: translateX(10%);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    gap: 12px;
+    z-index: 1001;
+    overflow-y: auto;
+  }
+
+  .mca-nav__links.mca-is-active {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  .mca-nav__item {
+    width: 100%;
+  }
+
+  .mca-nav__link {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 16px;
+  }
+
+  .mca-nav__icon {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+
+  .mca-nav__item--mobile-logout {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .mca-nav__logout-desktop {
+    display: none;
+  }
+
+  .mca-nav__logout-btn {
+    width: 100%;
+    margin-left: 0;
+    padding: 12px 14px;
+    font-size: 15px;
+    justify-content: center;
+    border-radius: 8px;
+  }
+}
+
+/* Tablet portrait */
+@media (max-width: 900px) {
+  .mca-nav {
+    height: 64px;
+  }
+
+  .mca-nav__links {
+    width: 300px;
+  }
+}
+
+/* Large phones (landscape) */
+@media (max-width: 640px) {
+  .mca-nav {
+    padding: 0 16px;
+    height: 60px;
+  }
+
+  .mca-nav__brand-text {
+    font-size: 19px;
+  }
+
+  .mca-nav__brand-icon {
+    font-size: 26px;
+  }
+
+  .mca-nav__toggle {
+    font-size: 25px;
+  }
+
+  .mca-nav__links {
+    width: 280px;
+    padding-top: 84px;
+  }
+}
+
+/* Standard phones (portrait) */
+@media (max-width: 480px) {
+  .mca-nav {
+    padding: 0 14px;
+  }
+
+  .mca-nav__brand-text {
+    font-size: 17px;
+  }
+
+  .mca-nav__brand-icon {
+    font-size: 24px;
+  }
+
+  .mca-nav__toggle {
+    font-size: 23px;
+  }
+
+  .mca-nav__links {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* Small / narrow phones */
+@media (max-width: 420px) {
+  .mca-nav__links {
+    width: 100%;
+    max-width: 100vw;
+    padding-top: 80px;
+  }
+
+  .mca-nav__brand-text {
+    display: none;
+  }
+
+  .mca-nav__brand-icon {
+    font-size: 22px;
+  }
+
+  .mca-nav__toggle {
+    font-size: 22px;
+  }
+}
+
+/* Extra-small phones (e.g. older/compact devices) */
+@media (max-width: 340px) {
+  .mca-nav {
+    padding: 0 10px;
+    height: 56px;
+  }
+
+  .mca-nav__links {
+    padding: 70px 14px 30px;
+  }
+
+  .mca-nav__link {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
+
+/* Short-height screens (landscape phones) so the slide-menu never gets
+   cut off or forces awkward scrolling behind the fold */
+@media (max-height: 420px) and (orientation: landscape) {
+  .mca-nav__links {
+    padding-top: 70px;
+    gap: 6px;
+  }
+
+  .mca-nav__link {
+    padding: 8px 14px;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .mca-nav,
+  .mca-nav__brand,
+  .mca-nav__link,
+  .mca-nav__icon,
+  .mca-nav__logout-btn,
+  .mca-nav__toggle,
+  .mca-nav__links,
+  .mca-nav__overlay {
+    transition: none !important;
+  }
 }

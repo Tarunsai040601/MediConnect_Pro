@@ -1,0 +1,199 @@
+#createDoctorPage {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 40px 80px;
+
+  background: linear-gradient(135deg, #edf7ff, #d7f3ff, #f7fbff);
+}
+
+.doctorCreateContainer {
+  width: 100%;
+  max-width: 500px;
+
+  background: #fff;
+
+  padding: 140px;
+
+  border-radius: 25px;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+
+  animation: doctorFade 0.5s ease;
+}
+
+@keyframes doctorFade {
+  from {
+    opacity: 0;
+
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+.doctorCreateHeader {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.doctorCreateHeader h2 {
+  font-size: 34px;
+
+  color: #1565c0;
+
+  margin-bottom: 10px;
+}
+
+.doctorCreateHeader p {
+  color: #666;
+}
+
+.doctorCreateForm {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+.doctorInputBox {
+  position: relative;
+}
+
+.doctorInputBox input,
+.doctorInputBox select {
+  width: 100%;
+
+  padding: 15px 50px;
+
+  border-radius: 14px;
+
+  border: 2px solid #d8e3f0;
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition: 0.3s;
+
+  background: #fdfdfd;
+}
+
+.doctorInputBox input:focus,
+.doctorInputBox select:focus {
+  border-color: #1976d2;
+
+  box-shadow: 0 0 10px rgba(25, 118, 210, 0.15);
+}
+
+.doctorInputIcon {
+  position: absolute;
+
+  left: 18px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #1976d2;
+
+  font-size: 18px;
+}
+
+.doctorPasswordToggle {
+  position: absolute;
+
+  right: 18px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  color: #777;
+}
+
+.doctorSubmitBtn {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #1976d2;
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.doctorSubmitBtn:hover {
+  background: #0d47a1;
+
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .doctorCreateContainer {
+    padding: 30px;
+  }
+
+  .doctorCreateHeader h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  #createDoctorPage {
+    padding: 7px;
+  }
+
+  .doctorCreateContainer {
+    padding: 2px;
+
+    border-radius: 18px;
+  }
+
+  .doctorCreateHeader h2 {
+    font-size: 24px;
+  }
+
+  .doctorInputBox input,
+  .doctorInputBox select {
+    padding: 14px 45px;
+
+    font-size: 15px;
+  }
+
+  .doctorSubmitBtn {
+    font-size: 15px;
+  }
+}
