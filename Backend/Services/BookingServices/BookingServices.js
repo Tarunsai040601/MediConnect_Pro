@@ -1,4 +1,5 @@
 const { knex } = require("../../Configurations/config");
+const sendAppointmentMail = require("../../Configurations/Utils/SendEmail.js");
 
 const BookingTable = "PatientBookingDetails";
 const GetAllPatients = "AuthDetails";
@@ -10,7 +11,7 @@ const GetallPatients = async (req, res) => {
     const allPatients = await knex(GetAllPatients)
       .withSchema(SchemaName)
       .where({ Role: "Patient" })
-      .select("id","Name", "Email", "Role");
+      .select("id", "Name", "Email", "Role");
 
     if (allPatients.length === 0) {
       return res.status(404).json({
@@ -35,10 +36,10 @@ const GetallPatients = async (req, res) => {
 
 const Booking = async (req, res) => {
   try {
-    // Login user details from JWT
+    // ================= JWT User =================
     const { id, name, email, role } = req.users;
 
-    // Optional: Only patients can book
+    // Only Patient can book
     if (role !== "Patient") {
       return res.status(403).json({
         success: false,
@@ -46,10 +47,11 @@ const Booking = async (req, res) => {
       });
     }
 
+    // ================= Request Body =================
     const { DoctorId, Disease, Symptoms, AppointmentDate, AppointmentTime } =
       req.body;
 
-    // Validation
+    // ================= Validation =================
     if (!DoctorId || !Disease || !AppointmentDate || !AppointmentTime) {
       return res.status(400).json({
         success: false,
@@ -57,11 +59,13 @@ const Booking = async (req, res) => {
       });
     }
 
-    // Check doctor exists
+    // ================= Get Doctor Details =================
     const doctor = await knex(DoctorTable)
       .withSchema(SchemaName)
       .where({ DoctorId })
+      .select("DoctorId", "AuthId", "Specialization", "HospitalName")
       .first();
+    console.log("Doctor Object:", doctor);
 
     if (!doctor) {
       return res.status(404).json({
@@ -70,7 +74,7 @@ const Booking = async (req, res) => {
       });
     }
 
-    // Check slot availability
+    // ================= Check Slot =================
     const alreadyBooked = await knex(BookingTable)
       .withSchema(SchemaName)
       .where({
@@ -88,7 +92,7 @@ const Booking = async (req, res) => {
       });
     }
 
-    // Insert booking
+    // ================= Insert Booking =================
     const booking = await knex(BookingTable)
       .withSchema(SchemaName)
       .insert({
@@ -102,6 +106,21 @@ const Booking = async (req, res) => {
       })
       .returning("*");
 
+    // ================= Send Email =================
+    try {
+      await sendAppointmentMail(
+        email,
+        name,
+        `${doctor.AuthId} (${doctor.Specialization.trim()})`,
+        AppointmentDate,
+        AppointmentTime,
+        Disease,
+      );
+    } catch (mailError) {
+      console.log("Email Error:", mailError.message);
+    }
+
+    // ================= Response =================
     return res.status(201).json({
       success: true,
       message: "Appointment booked successfully",
@@ -111,7 +130,10 @@ const Booking = async (req, res) => {
         email,
       },
       Doctor: {
-        DoctorId,
+        DoctorId: doctor.DoctorId,
+        Name: doctor.Name,
+        Specialization: doctor.Specialization,
+        Hospital: doctor.HospitalName,
       },
       Booking: booking[0],
     });
