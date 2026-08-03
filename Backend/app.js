@@ -4,12 +4,15 @@ const { dataBaseconnection } = require("./Configurations/config.js");
 const AuthRouter = require("./Routers/AuthRouters/AuthRouter.js");
 const DoctorRouter = require("./Routers/DoctorsRouters/DoctorsRouters.js");
 const DoctorDetailsRouters = require("./Routers/DoctorsDetails/DoctorsDetailsRouters.js");
+const cors=require('cors')
 const app = express();
 const port = process.env.serverPort || 8085;
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+app.use(cors())
 // authrouter middleware
 app.use("/api", AuthRouter);
 // doctorCreate Router middleware
