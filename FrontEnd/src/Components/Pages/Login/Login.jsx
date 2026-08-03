@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const Login = ({ onSwitch }) => {
+const Login = ({ onSwitch, onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     Email: "",
@@ -71,12 +71,28 @@ const Login = ({ onSwitch }) => {
         formData
       );
 
-      // Save token in localStorage
-      if (res.data.tokenDetails?.token) {
-        localStorage.setItem("token", res.data.tokenDetails.token);
-      }
-      if (res.data.details) {
-        localStorage.setItem("user", JSON.stringify(res.data.details));
+      const token = res.data.tokenDetails?.token;
+      const user = res.data.details;
+
+      if (token && user) {
+        const role = user.role || "";
+        console.log(`${role.charAt(0).toUpperCase() + role.slice(1)} Login Token:`, token);
+
+        if (role === "admin") {
+          localStorage.setItem("adminToken", token);
+        } else if (role === "doctor") {
+          localStorage.setItem("doctorToken", token);
+        } else if (role === "patient") {
+          localStorage.setItem("patientToken", token);
+        } else {
+          localStorage.setItem("token", token);
+        }
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        if (onLogin) {
+          onLogin(user);
+        }
       }
 
       Swal.fire({
