@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import {
   FaEnvelope,
@@ -8,12 +9,13 @@ import {
   FaHospital,
   FaUserMd,
   FaStethoscope,
-  FaClinicMedical
+  FaClinicMedical,
 } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const Login = ({ onSwitch, onLogin }) => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     Email: "",
@@ -30,7 +32,7 @@ const Login = ({ onSwitch, onLogin }) => {
 
   const validateForm = () => {
     const { Email, Password } = formData;
-    
+
     // Email Validation
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
     if (!emailRegex.test(Email)) {
@@ -38,19 +40,20 @@ const Login = ({ onSwitch, onLogin }) => {
         icon: "warning",
         title: "Invalid Email Format",
         text: "Please enter a valid email address.",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
       return false;
     }
 
     // Password Validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
     if (!passwordRegex.test(Password)) {
       Swal.fire({
         icon: "warning",
         title: "Weak Password",
         text: "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character.",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
       return false;
     }
@@ -68,15 +71,19 @@ const Login = ({ onSwitch, onLogin }) => {
 
       const res = await axios.post(
         "http://localhost:8080/api/authRouter/Login",
-        formData
+        formData,
       );
 
       const token = res.data.tokenDetails?.token;
       const user = res.data.details;
+      const role = user?.role?.toLowerCase();
+
+      console.log("Login Response:", res.data);
+      console.log("User:", user);
+      console.log("Role:", role);
 
       if (token && user) {
-        const role = user.role || "";
-        console.log(`${role.charAt(0).toUpperCase() + role.slice(1)} Login Token:`, token);
+        localStorage.setItem("user", JSON.stringify(user));
 
         if (role === "admin") {
           localStorage.setItem("adminToken", token);
@@ -84,18 +91,14 @@ const Login = ({ onSwitch, onLogin }) => {
           localStorage.setItem("doctorToken", token);
         } else if (role === "patient") {
           localStorage.setItem("patientToken", token);
-        } else {
-          localStorage.setItem("token", token);
         }
-
-        localStorage.setItem("user", JSON.stringify(user));
 
         if (onLogin) {
           onLogin(user);
         }
       }
 
-      Swal.fire({
+      await Swal.fire({
         icon: "success",
         title: "Welcome Back!",
         text: res.data.message || "Login successful.",
@@ -103,12 +106,19 @@ const Login = ({ onSwitch, onLogin }) => {
         showConfirmButton: false,
       });
 
+      if (role === "admin") {
+        navigate("/adminDashBoard");
+      } else if (role === "doctor") {
+        navigate("/doctorDashBoard");
+      } else if (role === "patient") {
+        navigate("/patientDashBoard");
+      }
+
       // Clear fields on success
       setFormData({
         Email: "",
         Password: "",
       });
-
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -117,7 +127,7 @@ const Login = ({ onSwitch, onLogin }) => {
           err.response?.data?.message ||
           err.response?.data?.err_message ||
           "Invalid details. Please try again.",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
     } finally {
       setLoading(false);
@@ -215,7 +225,11 @@ const Login = ({ onSwitch, onLogin }) => {
             <div className="form-footer">
               <p>
                 Don't have an account?{" "}
-                <button type="button" className="switch-link-btn" onClick={onSwitch}>
+                <button
+                  type="button"
+                  className="switch-link-btn"
+                  onClick={() => navigate("/")}
+                >
                   Create an account
                 </button>
               </p>

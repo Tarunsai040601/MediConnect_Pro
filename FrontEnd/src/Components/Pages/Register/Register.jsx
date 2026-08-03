@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import {
   FaUser,
@@ -10,12 +11,13 @@ import {
   FaHospital,
   FaUserMd,
   FaStethoscope,
-  FaClinicMedical
+  FaClinicMedical,
 } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const Register = ({ onSwitch }) => {
+const Register = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -42,7 +44,7 @@ const Register = ({ onSwitch }) => {
         icon: "warning",
         title: "Name Required",
         text: "Please enter your full name.",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
       return false;
     }
@@ -54,19 +56,20 @@ const Register = ({ onSwitch }) => {
         icon: "warning",
         title: "Invalid Email Format",
         text: "Please enter a valid email address.",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
       return false;
     }
 
     // Password validation (min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special)
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d@$!%*?&^#()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
     if (!passwordRegex.test(Password)) {
       Swal.fire({
         icon: "warning",
         title: "Weak Password",
         text: "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character.",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
       return false;
     }
@@ -84,15 +87,13 @@ const Register = ({ onSwitch }) => {
 
       const res = await axios.post(
         "http://localhost:8080/api/authRouter/Register",
-        formData
+        formData,
       );
 
       Swal.fire({
         icon: "success",
         title: "Registration Successful",
-        text:
-          res.data.message ||
-          "Your account has been created successfully.",
+        text: res.data.message || "Your account has been created successfully.",
         timer: 2000,
         showConfirmButton: false,
       });
@@ -106,9 +107,8 @@ const Register = ({ onSwitch }) => {
 
       // Switch to Login after successful registration
       setTimeout(() => {
-        onSwitch();
+        useNavigate("/login");
       }, 2000);
-
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -117,7 +117,7 @@ const Register = ({ onSwitch }) => {
           err.response?.data?.message ||
           err.response?.data?.err_message ||
           "Something went wrong",
-        confirmButtonColor: "#0F4C81"
+        confirmButtonColor: "#0F4C81",
       });
     } finally {
       setLoading(false);
@@ -142,8 +142,8 @@ const Register = ({ onSwitch }) => {
             </div>
             <h2>Join Our Healthcare Network</h2>
             <p>
-              Register today to start managing appointments, messaging clinic staff,
-              and tracking medical consultations.
+              Register today to start managing appointments, messaging clinic
+              staff, and tracking medical consultations.
             </p>
             <div className="features-grid">
               <div className="feature-item">
@@ -235,7 +235,6 @@ const Register = ({ onSwitch }) => {
                   onChange={handleChange}
                 >
                   <option value="admin">Admin</option>
-                  <option value="doctor">Doctor</option>
                   <option value="patient">Patient</option>
                 </select>
               </div>
@@ -248,7 +247,11 @@ const Register = ({ onSwitch }) => {
             <div className="form-footer">
               <p>
                 Already have an account?{" "}
-                <button type="button" className="switch-link-btn" onClick={onSwitch}>
+                <button
+                  type="button"
+                  className="switch-link-btn"
+                  onClick={() => navigate("/login")}
+                >
                   Please login
                 </button>
               </p>
