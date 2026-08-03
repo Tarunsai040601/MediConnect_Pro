@@ -3,6 +3,7 @@ const {
   Booking,
   DeleteBooking,
   UpdateBooking,
+  GetallPatients,
 } = require("../../Services/BookingServices/BookingServices");
 const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare.js");
 const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware.js");
@@ -30,5 +31,8 @@ BookingRouter.delete(
   roleMiddleware(["Patient"]),
   DeleteBooking,
 );
+
+// get all patients
+BookingRouter.get(`${perfix}/allPatients`, GetallPatients);
 
 module.exports = BookingRouter;

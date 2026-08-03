@@ -7,6 +7,7 @@ import Login from "./Components/Pages/Login/Login";
 import DoctorHomePage from "./Components/DashBoards/DoctorDashBoard/Home/DoctorHomePage";
 import PatientHome from "./Components/DashBoards/PatientDashBoard/Home/PatientHome";
 import AdminHome from "./Components/DashBoards/AdminDashBoard/Home/AdminHome";
+import AdminLayout from "./Components/DashBoards/AdminDashBoard/AdminLayouts/AdminLayout";
 
 const App = () => {
   return (
@@ -14,7 +15,14 @@ const App = () => {
       <Route path="/" element={<Register />} />
       <Route path="/login" element={<Login />} />
 
-      <Route path="/adminDashBoard" element={<AdminHome />} />
+      {/* Admin Dashboard */}
+      <Route path="/adminDashboard" element={<AdminLayout/>}>
+        <Route index element={<AdminHome />} />
+        {/* Future Pages */}
+        {/* <Route path="doctors" element={<Doctors />} /> */}
+        {/* <Route path="patients" element={<Patients />} /> */}
+        {/* <Route path="appointments" element={<Appointments />} /> */}
+      </Route>
       <Route path="/doctorDashBoard" element={<DoctorHomePage />} />
       <Route path="/patientDashBoard" element={<PatientHome />} />
     </Routes>

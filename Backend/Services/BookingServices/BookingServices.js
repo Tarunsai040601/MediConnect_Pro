@@ -1,9 +1,36 @@
 const { knex } = require("../../Configurations/config");
 
 const BookingTable = "PatientBookingDetails";
+const GetAllPatients = "AuthDetails";
 const DoctorTable = "DoctorDetails";
 const SchemaName = "HospitalManagement_Sysytem";
+// ============================get all patients=================
+const GetallPatients = async (req, res) => {
+  try {
+    const allPatients = await knex(GetAllPatients)
+      .withSchema(SchemaName)
+      .where({ Role: "Patient" })
+      .select("id","Name", "Email", "Role");
 
+    if (allPatients.length === 0) {
+      return res.status(404).json({
+        message: "No Patients Available up to now",
+      });
+    }
+
+    return res.status(200).json({
+      message: "All Patients",
+      details: allPatients,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 // ===================== Booking =====================
 
 const Booking = async (req, res) => {
@@ -19,21 +46,11 @@ const Booking = async (req, res) => {
       });
     }
 
-    const {
-      DoctorId,
-      Disease,
-      Symptoms,
-      AppointmentDate,
-      AppointmentTime,
-    } = req.body;
+    const { DoctorId, Disease, Symptoms, AppointmentDate, AppointmentTime } =
+      req.body;
 
     // Validation
-    if (
-      !DoctorId ||
-      !Disease ||
-      !AppointmentDate ||
-      !AppointmentTime
-    ) {
+    if (!DoctorId || !Disease || !AppointmentDate || !AppointmentTime) {
       return res.status(400).json({
         success: false,
         message: "All required fields are mandatory",
@@ -114,13 +131,8 @@ const UpdateBooking = async (req, res) => {
     const { BookingId } = req.params;
     const { id } = req.users;
 
-    const {
-      DoctorId,
-      Disease,
-      Symptoms,
-      AppointmentDate,
-      AppointmentTime,
-    } = req.body;
+    const { DoctorId, Disease, Symptoms, AppointmentDate, AppointmentTime } =
+      req.body;
 
     // Check booking exists
     const booking = await knex(BookingTable)
@@ -183,7 +195,7 @@ const UpdateBooking = async (req, res) => {
           AppointmentTime,
           updated_at: knex.fn.now(),
         },
-        ["*"]
+        ["*"],
       );
 
     return res.status(200).json({
@@ -222,10 +234,7 @@ const DeleteBooking = async (req, res) => {
       });
     }
 
-    await knex(BookingTable)
-      .withSchema(SchemaName)
-      .where({ BookingId })
-      .del();
+    await knex(BookingTable).withSchema(SchemaName).where({ BookingId }).del();
 
     return res.status(200).json({
       success: true,
@@ -242,6 +251,7 @@ const DeleteBooking = async (req, res) => {
 };
 
 module.exports = {
+  GetallPatients,
   Booking,
   UpdateBooking,
   DeleteBooking,

@@ -1,0 +1,180 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.admin-navbar{
+    width:100%;
+    height:75px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 6%;
+
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(20px);
+
+    box-shadow:0 5px 25px rgba(0,0,0,.08);
+
+    position:sticky;
+    top:0;
+    z-index:999;
+
+    transition:.4s;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:28px;
+    font-weight:700;
+    color:#1f4e79;
+}
+
+.logo span{
+    font-size:22px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    list-style:none;
+}
+
+.nav-links li a{
+    text-decoration:none;
+    color:#444;
+    font-size:16px;
+    font-weight:600;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:12px 18px;
+    border-radius:10px;
+
+    transition:.35s;
+}
+
+.nav-links li a:hover{
+
+    background:#0d6efd;
+    color:white;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 20px rgba(13,110,253,.35);
+}
+
+.nav-links li .active{
+    background:#0d6efd;
+    color:white;
+}
+
+.logout-btn{
+
+    border:none;
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    background:#dc3545;
+    color:white;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    transition:.35s;
+}
+
+.logout-btn:hover{
+
+    background:#b91d2d;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 20px rgba(220,53,69,.35);
+}
+
+.menu-icon{
+
+    display:none;
+
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* Tablet */
+
+@media(max-width:900px){
+
+    .menu-icon{
+        display:block;
+    }
+
+    .nav-links{
+
+        position:absolute;
+
+        top:75px;
+        left:-100%;
+
+        width:100%;
+
+        background:white;
+
+        flex-direction:column;
+
+        padding:25px 0;
+
+        transition:.4s;
+
+        box-shadow:0 15px 30px rgba(0,0,0,.08);
+    }
+
+    .nav-links.active{
+        left:0;
+    }
+
+    .nav-links li{
+        width:90%;
+    }
+
+    .nav-links li a{
+        width:100%;
+        justify-content:center;
+    }
+
+    .logout-btn{
+        width:90%;
+        justify-content:center;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:500px){
+
+    .logo span{
+        font-size:18px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+}
