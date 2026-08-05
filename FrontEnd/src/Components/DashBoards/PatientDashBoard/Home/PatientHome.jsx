@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./PatientHome.css";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import {
   FaUserMd,
   FaCalendarCheck,
@@ -14,7 +15,7 @@ import {
 
 const PatientHome = () => {
   const [patientName, setPatientName] = useState("Patient");
-
+  const navigate=useNavigate()
   useEffect(() => {
     try {
       const token = localStorage.getItem("patientToken");
@@ -27,6 +28,15 @@ const PatientHome = () => {
       console.log(error);
     }
   }, []);
+
+  const showDoctors = () => {
+    navigate("/Mediconnect/doctors", {
+    });
+  };
+    const handlerBook = () => {
+    navigate("/Mediconnect/BookAppointment", {
+    });
+  };
 
   const services = [
     {
@@ -73,14 +83,12 @@ const PatientHome = () => {
           </p>
 
           <div className="hero-buttons">
-            <button className="primary-btn">
-              Book Appointment
+            <button className="primary-btn" onClick={showDoctors}>
+              OurSpecialists
               <FaArrowRight />
             </button>
 
-            <button className="secondary-btn">
-              Find Doctors
-            </button>
+            {/* <button className="secondary-btn">Find Doctors</button> */}
           </div>
         </div>
 
@@ -95,7 +103,6 @@ const PatientHome = () => {
       {/* ================= STATS ================= */}
 
       <section className="stats-section">
-
         <div className="stat-card">
           <FaUserMd />
           <h2>120+</h2>
@@ -119,13 +126,11 @@ const PatientHome = () => {
           <h2>Secure</h2>
           <p>Medical Data</p>
         </div>
-
       </section>
 
       {/* ================= SERVICES ================= */}
 
       <section className="services-section">
-
         <div className="section-title">
           <h2>Our Services</h2>
           <p>Everything you need for better healthcare.</p>
@@ -147,19 +152,16 @@ const PatientHome = () => {
             </div>
           ))}
         </div>
-
       </section>
 
       {/* ================= WHY US ================= */}
 
       <section className="why-us">
-
         <div className="section-title">
           <h2>Why Choose MediConnectPro?</h2>
         </div>
 
         <div className="why-container">
-
           <div className="why-card">
             <FaUserMd />
             <h3>Expert Doctors</h3>
@@ -184,15 +186,12 @@ const PatientHome = () => {
               Your health information is protected with secure authentication.
             </p>
           </div>
-
         </div>
-
       </section>
 
       {/* ================= CALL TO ACTION ================= */}
 
       <section className="appointment-banner">
-
         <div>
           <h2>Need Medical Consultation?</h2>
 
@@ -201,13 +200,11 @@ const PatientHome = () => {
           </p>
         </div>
 
-        <button>
+        <button onClick={handlerBook}>
           Book Now
           <FaArrowRight />
         </button>
-
       </section>
-
     </div>
   );
 };
