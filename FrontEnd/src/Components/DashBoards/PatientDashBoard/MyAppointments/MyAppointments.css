@@ -1,0 +1,321 @@
+/* ===========================
+   MY APPOINTMENTS
+=========================== */
+
+.appointments-page{
+    min-height:100vh;
+    padding:35px 20px;
+    background:linear-gradient(135deg,#eef5ff,#f8fbff);
+}
+
+.appointments-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.appointments-header h1{
+    font-size:2.2rem;
+    color:#0d6efd;
+    margin-bottom:8px;
+}
+
+.appointments-header p{
+    color:#666;
+    font-size:16px;
+}
+
+/* ===========================
+SEARCH
+=========================== */
+
+.search-box{
+    max-width:450px;
+    margin:0 auto 30px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 18px;
+    border-radius:50px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.search-box svg{
+    color:#0d6efd;
+    font-size:18px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:transparent;
+}
+
+/* ===========================
+TABLE
+=========================== */
+
+.table-container{
+    background:#fff;
+    border-radius:20px;
+    overflow-x:auto;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    animation:fadeIn .5s ease;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:950px;
+}
+
+thead{
+    background:#0d6efd;
+    color:#fff;
+}
+
+thead th{
+    padding:18px;
+    text-align:center;
+    font-size:15px;
+    font-weight:600;
+}
+
+tbody tr{
+    transition:.3s;
+}
+
+tbody tr:nth-child(even){
+    background:#f8fbff;
+}
+
+tbody tr:hover{
+    background:#eef6ff;
+}
+
+tbody td{
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+    font-size:15px;
+}
+
+/* ===========================
+DOCTOR CELL
+=========================== */
+
+.doctor-cell{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    justify-content:flex-start;
+}
+
+.doctor-cell img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #0d6efd;
+    transition:.3s;
+}
+
+.doctor-cell img:hover{
+    transform:scale(1.08);
+}
+
+.doctor-cell span{
+    font-weight:600;
+    color:#333;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+/* ===========================
+STATUS
+=========================== */
+
+.status{
+    padding:8px 16px;
+    border-radius:25px;
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+}
+
+.status.pending{
+    background:#ffc107;
+    color:#000;
+}
+
+.status.confirmed{
+    background:#28a745;
+}
+
+.status.cancelled{
+    background:#dc3545;
+}
+
+/* ===========================
+BUTTONS
+=========================== */
+
+.edit-btn,
+.delete-btn{
+    border:none;
+    cursor:pointer;
+    padding:10px 14px;
+    border-radius:10px;
+    margin:0 4px;
+    color:#fff;
+    transition:.3s;
+    font-size:15px;
+}
+
+.edit-btn{
+    background:#0d6efd;
+}
+
+.edit-btn:hover{
+    background:#0b5ed7;
+    transform:translateY(-2px);
+}
+
+.delete-btn{
+    background:#dc3545;
+}
+
+.delete-btn:hover{
+    background:#bb2d3b;
+    transform:translateY(-2px);
+}
+
+/* ===========================
+EMPTY DATA
+=========================== */
+
+tbody h3{
+    padding:30px;
+    color:#777;
+}
+
+/* ===========================
+ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ===========================
+TABLET
+=========================== */
+
+@media(max-width:992px){
+
+.appointments-page{
+    padding:20px 10px;
+}
+
+.appointments-header h1{
+    font-size:1.9rem;
+}
+
+.table-container{
+    border-radius:15px;
+}
+
+table{
+    min-width:850px;
+}
+
+}
+
+/* ===========================
+MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.appointments-header h1{
+    font-size:1.6rem;
+}
+
+.appointments-header p{
+    font-size:14px;
+}
+
+.search-box{
+    width:100%;
+    padding:12px 16px;
+}
+
+.doctor-cell img{
+    width:45px;
+    height:45px;
+}
+
+.doctor-cell span{
+    font-size:14px;
+}
+
+thead th,
+tbody td{
+    padding:14px;
+    font-size:13px;
+}
+
+.edit-btn,
+.delete-btn{
+    padding:8px 10px;
+    font-size:13px;
+}
+
+}
+
+/* ===========================
+SMALL MOBILE
+=========================== */
+
+@media(max-width:480px){
+
+.appointments-page{
+    padding:15px 8px;
+}
+
+.appointments-header h1{
+    font-size:1.4rem;
+}
+
+.search-box{
+    border-radius:12px;
+}
+
+.doctor-cell{
+    gap:8px;
+}
+
+.doctor-cell img{
+    width:40px;
+    height:40px;
+}
+
+.status{
+    padding:6px 12px;
+    font-size:11px;
+}
+
+}

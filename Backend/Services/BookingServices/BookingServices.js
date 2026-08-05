@@ -5,6 +5,50 @@ const BookingTable = "PatientBookingDetails";
 const GetAllPatients = "AuthDetails";
 const DoctorTable = "DoctorDetails";
 const SchemaName = "HospitalManagement_Sysytem";
+// =======================my appointments======================
+// ===================== My Appointments =====================
+
+const MyAppointments = async (req, res) => {
+  try {
+    const { id } = req.users;
+
+    const bookings = await knex(`${SchemaName}.${BookingTable} as b`)
+      .leftJoin(
+        `${SchemaName}.${DoctorTable} as d`,
+        "b.DoctorId",
+        "d.DoctorId"
+      )
+      .select(
+        "b.BookingId",
+        "b.Disease",
+        "b.Symptoms",
+        "b.AppointmentDate",
+        "b.AppointmentTime",
+        "b.BookingStatus",
+        "d.DoctorId",
+        "d.AuthId as DoctorName",
+        "d.Specialization",
+        "d.HospitalName",
+        "d.ProfileImage",
+        "d.ConsultationFee"
+      )
+      .where("b.PatientId", id)
+      .orderBy("b.AppointmentDate", "desc");
+
+    return res.status(200).json({
+      success: true,
+      message: "My Appointments",
+      details: bookings,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 // ============================get all patients=================
 const GetallPatients = async (req, res) => {
   try {
@@ -273,6 +317,7 @@ const DeleteBooking = async (req, res) => {
 };
 
 module.exports = {
+  MyAppointments,
   GetallPatients,
   Booking,
   UpdateBooking,
