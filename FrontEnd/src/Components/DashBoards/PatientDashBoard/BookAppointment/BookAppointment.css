@@ -1,0 +1,254 @@
+/* ===========================
+   BOOK APPOINTMENT
+=========================== */
+
+.booking-page{
+    min-height:100vh;
+    background:linear-gradient(135deg,#eef5ff,#dbeeff,#f6fbff);
+    padding:40px 20px;
+}
+
+.booking-container{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 45px rgba(0,0,0,.12);
+    animation:fadeIn .7s ease;
+}
+
+.booking-container h1{
+    text-align:center;
+    color:#0b63c5;
+    margin-bottom:35px;
+    font-size:2.2rem;
+    font-weight:700;
+}
+
+/* ===========================
+TOP CARDS
+=========================== */
+
+.booking-top{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.info-card{
+    background:linear-gradient(135deg,#0b63c5,#1d8ff2);
+    color:#fff;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(13,110,253,.25);
+    transition:.35s;
+}
+
+.info-card:hover{
+    transform:translateY(-6px);
+}
+
+.info-card h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+    font-size:1.5rem;
+}
+
+.info-card p{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:16px;
+    margin:12px 0;
+    line-height:1.6;
+}
+
+.info-card strong{
+    color:#ffd65c;
+}
+
+/* ===========================
+FORM
+=========================== */
+
+.booking-form{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    font-size:16px;
+    font-weight:600;
+    color:#184a8b;
+    margin-bottom:8px;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    padding:14px 16px;
+    border:2px solid #d6e5fb;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+    transition:.3s;
+    background:#fdfefe;
+}
+
+.input-group textarea{
+    resize:none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    border-color:#0b63c5;
+    box-shadow:0 0 10px rgba(11,99,197,.15);
+}
+
+/* ===========================
+DATE & TIME
+=========================== */
+
+.double-input{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+input[type="date"],
+input[type="time"]{
+    cursor:pointer;
+    font-family:inherit;
+}
+
+/* ===========================
+BUTTON
+=========================== */
+
+.booking-form button{
+    width:260px;
+    margin:auto;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding:16px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#0b63c5,#1f8cff);
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:.35s;
+    box-shadow:0 10px 25px rgba(13,110,253,.25);
+}
+
+.booking-form button:hover{
+    transform:translateY(-4px);
+    background:linear-gradient(135deg,#084d9c,#0b63c5);
+    box-shadow:0 15px 30px rgba(0,0,0,.18);
+}
+
+/* ===========================
+ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ===========================
+TABLET
+=========================== */
+
+@media(max-width:992px){
+
+.booking-container{
+    padding:25px;
+}
+
+.booking-top{
+    grid-template-columns:1fr;
+}
+
+.double-input{
+    grid-template-columns:1fr;
+}
+
+.booking-form button{
+    width:100%;
+}
+
+}
+
+/* ===========================
+MOBILE
+=========================== */
+
+@media(max-width:576px){
+
+.booking-page{
+    padding:15px;
+}
+
+.booking-container{
+    padding:18px;
+    border-radius:15px;
+}
+
+.booking-container h1{
+    font-size:1.7rem;
+    margin-bottom:25px;
+}
+
+.info-card{
+    padding:18px;
+}
+
+.info-card h2{
+    font-size:1.2rem;
+}
+
+.info-card p{
+    font-size:14px;
+    flex-wrap:wrap;
+}
+
+.input-group label{
+    font-size:15px;
+}
+
+.input-group input,
+.input-group textarea{
+    font-size:14px;
+    padding:12px;
+}
+
+.booking-form button{
+    font-size:15px;
+    padding:14px;
+}
+
+}
