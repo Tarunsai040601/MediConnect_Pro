@@ -11,6 +11,11 @@ import AdminLayout from "./Components/DashBoards/AdminDashBoard/AdminLayouts/Adm
 import CreateDoctor from "./Components/DashBoards/AdminDashBoard/CreateDoctor/CreateDoctor";
 import ShowDoctors from "./Components/DashBoards/AdminDashBoard/ShowDoctors/ShowDoctors";
 import ShowReviews from "./Components/DashBoards/AdminDashBoard/ShowReviews/ShowReviews";
+import PatientLayout from "./Components/DashBoards/PatientDashBoard/PatientLayout/PatientLayout";
+import About from "./Components/DashBoards/PatientDashBoard/About/About";
+import ShowDoctorsData from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/ShowDoctorsData";
+import BookAppointment from "./Components/DashBoards/PatientDashBoard/BookAppointment/BookAppointment";
+import MyAppointments from "./Components/DashBoards/PatientDashBoard/MyAppointments/MyAppointments";
 
 const App = () => {
   return (
@@ -26,8 +31,15 @@ const App = () => {
         <Route path="ShowDoctors" element={<ShowDoctors />} />
         <Route path="Reviews" element={<ShowReviews />} />
       </Route>
-      <Route path="/doctorDashBoard" element={<DoctorHomePage />} />
-      <Route path="/patientDashBoard" element={<PatientHome />} />
+      <Route path="/Mediconnect" element={<PatientLayout />}>
+        <Route index element={<PatientHome/>} />
+        {/* Future Pages */}
+        <Route path="about" element={<About/>} />
+        <Route path="doctors" element={<ShowDoctorsData/>} />
+        <Route path="BookAppointment" element={<BookAppointment/>}/>
+        <Route path="MyAppointments" element={<MyAppointments/>}/>
+      </Route>
+      {/* <Route path="/patientDashBoard" element={<PatientHome />} /> */}
     </Routes>
   );
 };

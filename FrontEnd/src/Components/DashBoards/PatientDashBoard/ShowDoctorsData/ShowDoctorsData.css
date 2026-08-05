@@ -1,0 +1,296 @@
+/* ===========================
+   ShowDoctorsData.css
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.show-doctors-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f8fc;
+  padding: 40px 6%;
+}
+
+/* ================= Header ================= */
+
+.doctor-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.doctor-header h1 {
+  font-size: 2.8rem;
+  color: #0f4c81;
+  margin-bottom: 12px;
+}
+
+.doctor-header p {
+  color: #666;
+  font-size: 17px;
+}
+
+/* ================= Search ================= */
+
+.search-box {
+  max-width: 600px;
+  margin: 0 auto 45px;
+  background: white;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.search-box svg {
+  color: #1976d2;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+}
+
+/* ================= Grid ================= */
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+}
+
+/* ================= Card ================= */
+
+.doctor-card {
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  transition: .35s;
+}
+
+.doctor-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(25,118,210,.18);
+}
+
+/* ================= Image ================= */
+
+.doctor-image {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.doctor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .4s;
+}
+
+.doctor-card:hover .doctor-image img {
+  transform: scale(1.08);
+}
+
+/* ================= Details ================= */
+
+.doctor-details {
+  padding: 25px;
+}
+
+.doctor-details h2 {
+  color: #0f4c81;
+  font-size: 24px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doctor-details p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.doctor-details svg {
+  color: #1976d2;
+  min-width: 18px;
+}
+
+.doctor-details strong {
+  color: #0f4c81;
+}
+
+/* ================= Buttons ================= */
+
+.doctor-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.doctor-buttons button {
+  flex: 1;
+  border: none;
+  padding: 13px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: .3s;
+}
+
+.view-btn {
+  background: #1976d2;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #0f4c81;
+  transform: translateY(-3px);
+}
+
+.book-btn {
+  background: #2e7d32;
+  color: white;
+}
+
+.book-btn:hover {
+  background: #1b5e20;
+  transform: translateY(-3px);
+}
+
+/* ================= Loading ================= */
+
+.loading-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container h2 {
+  color: #1976d2;
+  animation: pulse 1.2s infinite;
+}
+
+/* ================= Empty ================= */
+
+.no-data {
+  text-align: center;
+  color: #999;
+  grid-column: 1/-1;
+  margin-top: 40px;
+}
+
+/* ================= Animation ================= */
+
+@keyframes pulse {
+  0% {
+    opacity: .4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .4;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+
+  .show-doctors-page {
+    padding: 30px;
+  }
+
+  .doctor-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .doctor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+
+  .doctor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-header h1 {
+    font-size: 1.9rem;
+  }
+
+  .doctor-buttons {
+    flex-direction: column;
+  }
+
+  .doctor-image {
+    height: 230px;
+  }
+
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+
+  .show-doctors-page {
+    padding: 20px 15px;
+  }
+
+  .doctor-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .doctor-header p {
+    font-size: 15px;
+  }
+
+  .search-box {
+    padding: 12px 16px;
+  }
+
+  .doctor-details {
+    padding: 20px;
+  }
+
+  .doctor-details h2 {
+    font-size: 20px;
+  }
+
+  .doctor-details p {
+    font-size: 14px;
+  }
+
+  .doctor-buttons button {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+}

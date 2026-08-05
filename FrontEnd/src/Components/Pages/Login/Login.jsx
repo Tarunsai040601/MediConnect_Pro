@@ -111,7 +111,7 @@ const Login = ({ onSwitch, onLogin }) => {
       } else if (role === "doctor") {
         navigate("/doctorDashBoard");
       } else if (role === "patient") {
-        navigate("/patientDashBoard");
+        navigate("/Mediconnect");
       }
 
       // Clear fields on success

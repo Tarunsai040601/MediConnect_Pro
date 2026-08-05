@@ -1,0 +1,310 @@
+/* ===========================
+   About.css
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.about-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f9fc;
+  overflow-x: hidden;
+}
+
+/* ================= HERO ================= */
+
+.about-hero {
+  height: 55vh;
+  background: linear-gradient(rgba(15,76,129,.75), rgba(25,118,210,.75)),
+    url("https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1600")
+      center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.about-overlay {
+  width: 90%;
+  max-width: 800px;
+  animation: fadeUp 1s ease;
+}
+
+.about-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.about-overlay p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* ================= ABOUT ================= */
+
+.about-container {
+  width: 90%;
+  margin: 80px auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.15);
+  transition: .4s;
+}
+
+.about-image img:hover {
+  transform: scale(1.03);
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-content h2 {
+  color: #0f4c81;
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+}
+
+.about-content p {
+  color: #555;
+  line-height: 1.9;
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+/* ================= MISSION ================= */
+
+.mission-section {
+  width: 90%;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 35px;
+}
+
+.mission-card {
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: .3s;
+}
+
+.mission-card:hover {
+  transform: translateY(-10px);
+}
+
+.mission-card svg {
+  font-size: 55px;
+  color: #1976d2;
+  margin-bottom: 20px;
+}
+
+.mission-card h3 {
+  color: #0f4c81;
+  margin-bottom: 15px;
+}
+
+.mission-card p {
+  color: #666;
+  line-height: 1.8;
+}
+
+/* ================= WHY ================= */
+
+.why-section {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 80px;
+}
+
+.why-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #0f4c81;
+  margin-bottom: 45px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+}
+
+.why-card {
+  background: white;
+  padding: 35px 25px;
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: .3s;
+}
+
+.why-card:hover {
+  transform: translateY(-10px);
+}
+
+.why-card svg {
+  font-size: 45px;
+  color: #1976d2;
+  margin-bottom: 20px;
+}
+
+.why-card h3 {
+  color: #0f4c81;
+  margin-bottom: 12px;
+}
+
+.why-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ================= STATS ================= */
+
+.stats-section {
+  width: 90%;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+}
+
+.stat-box {
+  background: linear-gradient(135deg,#0f4c81,#1976d2);
+  color: white;
+  padding: 35px;
+  border-radius: 18px;
+  text-align: center;
+  transition: .3s;
+}
+
+.stat-box:hover {
+  transform: scale(1.05);
+}
+
+.stat-box svg {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.stat-box h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.stat-box p {
+  font-size: 17px;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1024px){
+
+.about-container{
+    flex-direction:column;
+    text-align:center;
+}
+
+.mission-section{
+    grid-template-columns:1fr;
+}
+
+.why-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.stats-section{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.about-hero{
+    height:45vh;
+}
+
+.about-overlay h1{
+    font-size:2.2rem;
+}
+
+.about-overlay p{
+    font-size:16px;
+}
+
+.about-content h2{
+    font-size:2rem;
+}
+
+.why-grid{
+    grid-template-columns:1fr;
+}
+
+.stats-section{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:480px){
+
+.about-container{
+    margin:50px auto;
+    gap:30px;
+}
+
+.about-content h2{
+    font-size:1.7rem;
+}
+
+.about-content p{
+    font-size:15px;
+}
+
+.mission-card,
+.why-card,
+.stat-box{
+    padding:25px;
+}
+
+.about-overlay h1{
+    font-size:1.8rem;
+}
+
+.about-overlay p{
+    font-size:15px;
+}
+
+}
