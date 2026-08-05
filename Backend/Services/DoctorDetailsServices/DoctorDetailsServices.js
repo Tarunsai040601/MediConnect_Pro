@@ -180,21 +180,33 @@ const UpdateProfile = async (req, res) => {
 // featch doctor profile
 const doctorProfile = async (req, res) => {
   try {
-    const data = await knex(table_name)
-      .withSchema(SchemaName)
-      .select("*")
-      .first();
 
-    if (!data) {
-      return res.status(404).json({
-        success: false,
-        message: "Doctor profile not found",
-      });
-    }
+    const data = await knex("DoctorDetails as d")
+      .withSchema(SchemaName)
+      .join("AuthDetails as a", "a.Name", "d.AuthId")
+      .select(
+        "d.DoctorId",
+        "a.id",
+        "a.Name",
+        "a.Email",
+        "d.Specialization",
+        "d.Qualification",
+        "d.Experience",
+        "d.ProfileImage",
+        "d.WorkingImage",
+        "d.PhoneNumber",
+        "d.HospitalName",
+        "d.HospitalAddress",
+        "d.AboutDoctor",
+        "d.ConsultationFee",
+        "d.AvailableDays",
+        "d.AvailableTime",
+        "d.IsAvailable"
+      );
 
     return res.status(200).json({
       success: true,
-      message: "Doctor profile fetched successfully",
+      message: "All Doctor Profiles",
       details: data,
     });
 
@@ -210,5 +222,5 @@ const doctorProfile = async (req, res) => {
 module.exports = {
   CreateProfile,
   UpdateProfile,
-  doctorProfile
+  doctorProfile,
 };

@@ -2,295 +2,261 @@
    ShowDoctorsData.css
 =========================== */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-.show-doctors-page {
-  width: 100%;
-  min-height: 100vh;
-  background: #f4f8fc;
-  padding: 40px 6%;
+.show-doctors-page{
+    width:100%;
+    min-height:100vh;
+    background:#f4f8fc;
+    padding:40px 5%;
 }
 
-/* ================= Header ================= */
+/* Header */
 
-.doctor-header {
-  text-align: center;
-  margin-bottom: 35px;
+.doctor-header{
+    text-align:center;
+    margin-bottom:35px;
 }
 
-.doctor-header h1 {
-  font-size: 2.8rem;
-  color: #0f4c81;
-  margin-bottom: 12px;
+.doctor-header h1{
+    font-size:2.7rem;
+    color:#0d47a1;
+    margin-bottom:10px;
 }
 
-.doctor-header p {
-  color: #666;
-  font-size: 17px;
+.doctor-header p{
+    color:#666;
+    font-size:17px;
 }
 
-/* ================= Search ================= */
+/* Search */
 
-.search-box {
-  max-width: 600px;
-  margin: 0 auto 45px;
-  background: white;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  padding: 15px 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+.search-box{
+    max-width:650px;
+    margin:0 auto 40px;
+    background:#fff;
+    border-radius:50px;
+    display:flex;
+    align-items:center;
+    padding:15px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-.search-box svg {
-  color: #1976d2;
-  font-size: 20px;
-  margin-right: 12px;
+.search-box svg{
+    color:#1976d2;
+    margin-right:12px;
+    font-size:18px;
 }
 
-.search-box input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background: transparent;
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:16px;
 }
 
-/* ================= Grid ================= */
+/* Grid */
 
-.doctor-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 30px;
+.doctor-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
 }
 
-/* ================= Card ================= */
+/* Card */
 
-.doctor-card {
-  background: white;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0,0,0,.08);
-  transition: .35s;
+.doctor-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    transition:.35s;
 }
 
-.doctor-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 40px rgba(25,118,210,.18);
+.doctor-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(25,118,210,.18);
 }
 
-/* ================= Image ================= */
+/* Image */
 
-.doctor-image {
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
+.doctor-image{
+    width:100%;
+    height:280px;
+    overflow:hidden;
+    background:#eef4ff;
 }
 
-.doctor-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: .4s;
+.doctor-image img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    transition:.5s;
 }
 
-.doctor-card:hover .doctor-image img {
-  transform: scale(1.08);
+.doctor-card:hover .doctor-image img{
+    transform:scale(1.08);
 }
 
-/* ================= Details ================= */
+/* Details */
 
-.doctor-details {
-  padding: 25px;
+.doctor-details{
+    padding:25px;
 }
 
-.doctor-details h2 {
-  color: #0f4c81;
-  font-size: 24px;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.doctor-details h2{
+    color:#0d47a1;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:23px;
 }
 
-.doctor-details p {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 12px 0;
-  color: #555;
-  font-size: 15px;
-  line-height: 1.5;
+.doctor-details p{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:12px 0;
+    color:#555;
+    font-size:15px;
+    line-height:1.5;
 }
 
-.doctor-details svg {
-  color: #1976d2;
-  min-width: 18px;
+.doctor-details svg{
+    color:#1976d2;
+    min-width:18px;
 }
 
-.doctor-details strong {
-  color: #0f4c81;
+.doctor-details strong{
+    color:#222;
 }
 
-/* ================= Buttons ================= */
+/* Buttons */
 
-.doctor-buttons {
-  margin-top: 25px;
-  display: flex;
-  gap: 15px;
+.doctor-buttons{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
 }
 
-.doctor-buttons button {
-  flex: 1;
-  border: none;
-  padding: 13px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  transition: .3s;
+.doctor-buttons button{
+    flex:1;
+    border:none;
+    border-radius:12px;
+    padding:13px;
+    cursor:pointer;
+    color:#fff;
+    font-weight:600;
+    font-size:15px;
+    transition:.3s;
 }
 
-.view-btn {
-  background: #1976d2;
-  color: white;
+.view-btn{
+    background:#1976d2;
 }
 
-.view-btn:hover {
-  background: #0f4c81;
-  transform: translateY(-3px);
+.view-btn:hover{
+    background:#0d47a1;
 }
 
-.book-btn {
-  background: #2e7d32;
-  color: white;
+.book-btn{
+    background:#2e7d32;
 }
 
-.book-btn:hover {
-  background: #1b5e20;
-  transform: translateY(-3px);
+.book-btn:hover{
+    background:#1b5e20;
 }
 
-/* ================= Loading ================= */
+/* Loading */
 
-.loading-container {
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.loading-container{
+    height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+    color:#1976d2;
 }
 
-.loading-container h2 {
-  color: #1976d2;
-  animation: pulse 1.2s infinite;
+/* Empty */
+
+.no-data{
+    grid-column:1/-1;
+    text-align:center;
+    color:#777;
+    font-size:24px;
+    margin-top:40px;
 }
 
-/* ================= Empty ================= */
+/* Tablet */
 
-.no-data {
-  text-align: center;
-  color: #999;
-  grid-column: 1/-1;
-  margin-top: 40px;
-}
+@media(max-width:992px){
 
-/* ================= Animation ================= */
-
-@keyframes pulse {
-  0% {
-    opacity: .4;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: .4;
-  }
-}
-
-/* ================= Tablet ================= */
-
-@media (max-width: 992px) {
-
-  .show-doctors-page {
-    padding: 30px;
-  }
-
-  .doctor-header h1 {
-    font-size: 2.2rem;
-  }
-
-  .doctor-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .doctor-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
 }
 
-/* ================= Mobile ================= */
+/* Mobile */
 
-@media (max-width: 768px) {
+@media(max-width:768px){
 
-  .doctor-grid {
-    grid-template-columns: 1fr;
-  }
+    .show-doctors-page{
+        padding:25px 18px;
+    }
 
-  .doctor-header h1 {
-    font-size: 1.9rem;
-  }
+    .doctor-grid{
+        grid-template-columns:1fr;
+    }
 
-  .doctor-buttons {
-    flex-direction: column;
-  }
+    .doctor-header h1{
+        font-size:2rem;
+    }
 
-  .doctor-image {
-    height: 230px;
-  }
+    .doctor-image{
+        height:240px;
+    }
+
+    .doctor-buttons{
+        flex-direction:column;
+    }
 
 }
 
-/* ================= Small Mobile ================= */
+/* Small Mobile */
 
-@media (max-width: 480px) {
+@media(max-width:480px){
 
-  .show-doctors-page {
-    padding: 20px 15px;
-  }
+    .doctor-header h1{
+        font-size:1.7rem;
+    }
 
-  .doctor-header h1 {
-    font-size: 1.6rem;
-  }
+    .doctor-header p{
+        font-size:14px;
+    }
 
-  .doctor-header p {
-    font-size: 15px;
-  }
+    .doctor-image{
+        height:220px;
+    }
 
-  .search-box {
-    padding: 12px 16px;
-  }
+    .doctor-details{
+        padding:20px;
+    }
 
-  .doctor-details {
-    padding: 20px;
-  }
+    .doctor-details h2{
+        font-size:20px;
+    }
 
-  .doctor-details h2 {
-    font-size: 20px;
-  }
-
-  .doctor-details p {
-    font-size: 14px;
-  }
-
-  .doctor-buttons button {
-    font-size: 14px;
-    padding: 12px;
-  }
+    .doctor-details p{
+        font-size:14px;
+    }
 
 }

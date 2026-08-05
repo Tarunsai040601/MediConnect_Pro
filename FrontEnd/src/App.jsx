@@ -16,6 +16,7 @@ import About from "./Components/DashBoards/PatientDashBoard/About/About";
 import ShowDoctorsData from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/ShowDoctorsData";
 import BookAppointment from "./Components/DashBoards/PatientDashBoard/BookAppointment/BookAppointment";
 import MyAppointments from "./Components/DashBoards/PatientDashBoard/MyAppointments/MyAppointments";
+import DoctorDetails from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/DoctorDetails/Doctordetails";
 
 const App = () => {
   return (
@@ -32,12 +33,14 @@ const App = () => {
         <Route path="Reviews" element={<ShowReviews />} />
       </Route>
       <Route path="/Mediconnect" element={<PatientLayout />}>
-        <Route index element={<PatientHome/>} />
+        <Route index element={<PatientHome />} />
         {/* Future Pages */}
-        <Route path="about" element={<About/>} />
-        <Route path="doctors" element={<ShowDoctorsData/>} />
-        <Route path="BookAppointment" element={<BookAppointment/>}/>
-        <Route path="MyAppointments" element={<MyAppointments/>}/>
+        <Route path="about" element={<About />} />
+        <Route path="doctors" element={<ShowDoctorsData />} />
+        {/* 👇 New Route */}
+        <Route path="doctor/:id" element={<DoctorDetails/>} />
+        <Route path="BookAppointment" element={<BookAppointment />} />
+        <Route path="MyAppointments" element={<MyAppointments />} />
       </Route>
       {/* <Route path="/patientDashBoard" element={<PatientHome />} /> */}
     </Routes>

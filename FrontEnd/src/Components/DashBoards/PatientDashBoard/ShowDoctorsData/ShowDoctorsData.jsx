@@ -4,16 +4,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   FaUserMd,
-  FaPhoneAlt,
-  FaHospital,
-  FaGraduationCap,
-  FaBriefcaseMedical,
-  FaCalendarCheck,
-  FaEye,
   FaSearch,
-  FaMoneyBillWave,
+  FaEye,
+  FaCalendarCheck,
+  FaBriefcaseMedical,
   FaClock,
-  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 const API_BASE = "http://localhost:8080/api";
@@ -33,7 +28,7 @@ const ShowDoctorsData = () => {
   useEffect(() => {
     const filtered = doctors.filter((doctor) => {
       return (
-        doctor.AuthId?.toLowerCase().includes(search.toLowerCase()) ||
+        doctor.Name?.toLowerCase().includes(search.toLowerCase()) ||
         doctor.Specialization?.toLowerCase().includes(search.toLowerCase())
       );
     });
@@ -43,33 +38,30 @@ const ShowDoctorsData = () => {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get(
-        `${API_BASE}/doctorDetails/profile`
-      );
+      const res = await axios.get(`${API_BASE}/doctorDetails/profile`);
 
-      // API returns single object -> convert to array
-      const doctor = res.data.details;
-
-      setDoctors([doctor]);
-      setFilteredDoctors([doctor]);
-    } catch (error) {
-      console.log(error);
+      if (res.data.success) {
+        setDoctors(res.data.details);
+        setFilteredDoctors(res.data.details);
+      }
+    } catch (err) {
+      console.log(err);
     } finally {
       setLoading(false);
     }
   };
 
   const handleView = (doctor) => {
-    navigate(`/patient/doctor/${doctor.DoctorId}`, {
+    navigate(`/Mediconnect/doctor/${doctor.DoctorId}`, {
       state: doctor,
     });
   };
 
-  const handleBook = (doctor) => {
-    navigate("/patient/book", {
-      state: doctor,
-    });
-  };
+ const handleBook = (doctor) => {
+  navigate("/Mediconnect/BookAppointment", {
+    state: doctor,
+  });
+};
 
   if (loading) {
     return (
@@ -83,10 +75,8 @@ const ShowDoctorsData = () => {
     <div className="show-doctors-page">
 
       <div className="doctor-header">
-        <h1>Our Specialist Doctor</h1>
-        <p>
-          Book your appointment with our experienced specialist.
-        </p>
+        <h1>Our Specialist Doctors</h1>
+        <p>Find the right doctor and book your appointment.</p>
       </div>
 
       <div className="search-box">
@@ -94,7 +84,7 @@ const ShowDoctorsData = () => {
 
         <input
           type="text"
-          placeholder="Search Doctor..."
+          placeholder="Search Doctor / Specialization..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -102,82 +92,57 @@ const ShowDoctorsData = () => {
 
       <div className="doctor-grid">
 
-        {filteredDoctors.length > 0 ? (
+        {filteredDoctors.length === 0 ? (
+          <h2 className="no-data">
+            No Doctors Found
+          </h2>
+        ) : (
           filteredDoctors.map((doctor) => (
-            <div className="doctor-card" key={doctor.DoctorId}>
-
+            <div
+              className="doctor-card"
+              key={doctor.DoctorId}
+            >
               <div className="doctor-image">
+
                 <img
                   src={doctor.ProfileImage}
-                  alt={doctor.AuthId}
+                  alt={doctor.Name}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+                  }}
                 />
+
+                <span
+                  className={
+                    doctor.IsAvailable
+                      ? "available"
+                      : "not-available"
+                  }
+                >
+                  {doctor.IsAvailable
+                    ? "Available"
+                    : "Unavailable"}
+                </span>
+
               </div>
 
               <div className="doctor-details">
 
                 <h2>
-                  <FaUserMd />
-                  {doctor.AuthId}
+                  <FaUserMd /> Dr. {doctor.Name}
                 </h2>
 
                 <p>
                   <FaBriefcaseMedical />
-                  <strong>Specialization :</strong>
+                  <strong>Specialization :</strong>{" "}
                   {doctor.Specialization}
                 </p>
 
                 <p>
-                  <FaGraduationCap />
-                  <strong>Qualification :</strong>
-                  {doctor.Qualification}
-                </p>
-
-                <p>
-                  <FaHospital />
-                  <strong>Hospital :</strong>
-                  {doctor.HospitalName}
-                </p>
-
-                <p>
-                  <FaPhoneAlt />
-                  <strong>Phone :</strong>
-                  {doctor.PhoneNumber}
-                </p>
-
-                <p>
-                  <FaMoneyBillWave />
-                  <strong>Fee :</strong>
-                  ₹{doctor.ConsultationFee}
-                </p>
-
-                <p>
                   <FaClock />
-                  <strong>Time :</strong>
-                  {doctor.AvailableTime}
-                </p>
-
-                <p>
-                  <FaMapMarkerAlt />
-                  <strong>Address :</strong>
-                  {doctor.HospitalAddress}
-                </p>
-
-                <p>
-                  <strong>Experience :</strong>
+                  <strong>Experience :</strong>{" "}
                   {doctor.Experience}
-                </p>
-
-                <p>
-                  <strong>Status :</strong>{" "}
-                  {doctor.IsAvailable ? (
-                    <span style={{ color: "green" }}>
-                      🟢 Available
-                    </span>
-                  ) : (
-                    <span style={{ color: "red" }}>
-                      🔴 Not Available
-                    </span>
-                  )}
                 </p>
 
                 <div className="doctor-buttons">
@@ -187,7 +152,7 @@ const ShowDoctorsData = () => {
                     onClick={() => handleView(doctor)}
                   >
                     <FaEye />
-                    View Profile
+                    View More
                   </button>
 
                   <button
@@ -204,13 +169,10 @@ const ShowDoctorsData = () => {
 
             </div>
           ))
-        ) : (
-          <h2 className="no-data">
-            No Doctors Found
-          </h2>
         )}
 
       </div>
+
     </div>
   );
 };
