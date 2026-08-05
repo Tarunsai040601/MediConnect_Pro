@@ -1,14 +1,14 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import DoctorNavbar from '../DoctorNavbar/DoctorNavbar'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import DoctorNavbar from "../DoctorNavbar/DoctorNavbar";
 
 const DoctotLayout = () => {
   return (
-    <div>
-      <Outlet/>
-      <DoctorNavbar/>
-    </div>
-  )
-}
+    <>
+      <DoctorNavbar />
+      <Outlet />
+    </>
+  );
+};
 
-export default DoctotLayout
+export default DoctotLayout;

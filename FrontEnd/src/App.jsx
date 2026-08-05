@@ -18,6 +18,8 @@ import BookAppointment from "./Components/DashBoards/PatientDashBoard/BookAppoin
 import MyAppointments from "./Components/DashBoards/PatientDashBoard/MyAppointments/MyAppointments";
 import DoctorDetails from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/DoctorDetails/Doctordetails";
 import DoctotLayout from "./Components/DashBoards/DoctorDashBoard/DoctorLayout/DoctotLayout";
+// import Myprofile from "./Components/DashBoards/DoctorDashBoard/Myprofile/Myprofile";
+import CreateProfile from "./Components/DashBoards/DoctorDashBoard/CreateProfile/CreateProfile";
 
 const App = () => {
   return (
@@ -44,8 +46,9 @@ const App = () => {
         <Route path="MyAppointments" element={<MyAppointments />} />
       </Route>
       {/* Doctor Dashboard */}
-      <Route>
-        <Route path="/DoctorDashboard" element={<DoctotLayout />} />
+      <Route path="/DoctorDashboard" element={<DoctotLayout />}>
+        <Route index element={<DoctorHomePage />} />
+        <Route path="Createprofile" element={<CreateProfile/>} />
       </Route>
     </Routes>
   );

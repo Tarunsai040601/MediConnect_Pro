@@ -62,7 +62,11 @@ const DoctorNavbar = () => {
             <FaHome /> Home
           </Link>
         </li>
-
+<li className={location.pathname === "/DoctorDashboard" ? "active" : ""}>
+          <Link to="/DoctorDashboard">
+            <FaUserCircle /> CraeteProfile
+          </Link>
+        </li>
         <li
           className={
             location.pathname === "/doctor/appointments" ? "active" : ""
@@ -73,10 +77,8 @@ const DoctorNavbar = () => {
           </Link>
         </li>
 
-        <li
-          className={location.pathname === "/doctor/profile" ? "active" : ""}
-        >
-          <Link to="/doctor/profile">
+        <li className={location.pathname === "/DoctorDashboard" ? "active" : ""}>
+          <Link to="/DoctorDashboard">
             <FaUserCircle /> My Profile
           </Link>
         </li>
