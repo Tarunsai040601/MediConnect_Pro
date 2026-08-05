@@ -8,7 +8,7 @@ const sendAppointmentMail = async (
   doctorName,
   appointmentDate,
   appointmentTime,
-  disease
+  disease,
 ) => {
   try {
     await sgMail.send({
@@ -65,7 +65,8 @@ const sendAppointmentMail = async (
 
     console.log("✅ Appointment Email Sent");
   } catch (err) {
-    console.log(err.response?.body || err.message);
+    console.log("Status:", err.code);
+    console.log("Response:", err.response?.body);
   }
 };
 

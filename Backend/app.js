@@ -1,5 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv").config({ quiet: true });
+
+
+console.log("SENDGRID_API_KEY:", process.env.SENDGRID_API_KEY);
+console.log("FROM_EMAIL:", process.env.FROM_EMAIL);
+
+// migatha code...
 const { dataBaseconnection } = require("./Configurations/config.js");
 const AuthRouter = require("./Routers/AuthRouters/AuthRouter.js");
 const DoctorRouter = require("./Routers/DoctorsRouters/DoctorsRouters.js");
