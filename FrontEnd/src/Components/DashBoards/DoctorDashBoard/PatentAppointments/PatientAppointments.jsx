@@ -12,7 +12,7 @@ import {
   FaHospital,
 } from "react-icons/fa";
 
-const API = "http://localhost:8080/api";
+const API = "https://mediconnect-pro-q1pw.onrender.com/api";
 
 const PatientAppointments = () => {
   const [appointments, setAppointments] = useState([]);

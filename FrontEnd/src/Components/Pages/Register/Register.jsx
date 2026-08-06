@@ -86,7 +86,7 @@ const Register = () => {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:8080/api/authRouter/Register",
+        "https://mediconnect-pro-q1pw.onrender.com/api/authRouter/Register",
         formData,
       );
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MediInfo.css";
 
-const API = "http://localhost:8080/api/Recipet";
+const API = "https://mediconnect-pro-q1pw.onrender.com/api/Recipet";
 
 const MediInfo = () => {
   const [prescriptions, setPrescriptions] = useState([]);

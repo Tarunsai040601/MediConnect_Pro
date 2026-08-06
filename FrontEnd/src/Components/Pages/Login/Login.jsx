@@ -70,7 +70,7 @@ const Login = ({ onSwitch, onLogin }) => {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:8080/api/authRouter/Login",
+        "https://mediconnect-pro-q1pw.onrender.com/api/authRouter/Login",
         formData,
       );
 

@@ -19,7 +19,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-const API = "http://localhost:8080/api";
+const API = "https://mediconnect-pro-q1pw.onrender.com/api";
 
 const Myprofile = () => {
   const [doctor, setDoctor] = useState(null);
