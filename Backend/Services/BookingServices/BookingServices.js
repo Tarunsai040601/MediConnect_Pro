@@ -15,6 +15,7 @@ const SchemaName = "HospitalManagement_Sysytem";
 const MyAppointments = async (req, res) => {
   try {
     const { id } = req.users;
+   
 
     const bookings = await knex(`${SchemaName}.${BookingTable} as b`)
       .leftJoin(`${SchemaName}.${DoctorTable} as d`, "b.DoctorId", "d.DoctorId")
@@ -82,6 +83,7 @@ const Booking = async (req, res) => {
   try {
     // ================= JWT User =================
     const { id, name, email, role } = req.users;
+    console.log("JWT USER:", req.users);
 
     // Only Patient can book
     if (role !== "patient") {
@@ -323,12 +325,14 @@ const DeleteBooking = async (req, res) => {
 const DoctorAppointments = async (req, res) => {
   try {
     const { id } = req.users;
+    console.log("iddata:",req.users)
 
     // Find Doctor using JWT AuthId
     const doctor = await knex(DoctorTable)
       .withSchema(SchemaName)
       .where({ AuthId: id })
       .first();
+      console.log("DOCTOR DATA:", doctor);
 
     if (!doctor) {
       return res.status(404).json({
