@@ -318,14 +318,16 @@ const DeleteBooking = async (req, res) => {
 
 // ===================== Doctor Appointments =====================
 
+// ===================== Doctor Appointments =====================
+
 const DoctorAppointments = async (req, res) => {
   try {
-    const doctorName = req.users.name;
+    const { id } = req.users;
 
-    // Doctor Details
+    // Find Doctor using JWT AuthId
     const doctor = await knex(DoctorTable)
       .withSchema(SchemaName)
-      .where({ AuthId: doctorName })
+      .where({ AuthId: id })
       .first();
 
     if (!doctor) {
@@ -335,9 +337,14 @@ const DoctorAppointments = async (req, res) => {
       });
     }
 
+    // Get Doctor Appointments
     const appointments = await knex(`${BookingTable} as b`)
       .withSchema(SchemaName)
-      .join(`${GetAllPatients} as p`, "b.PatientId", "p.id")
+      .join(
+        `${GetAllPatients} as p`,
+        "b.PatientId",
+        "p.id"
+      )
       .where("b.DoctorId", doctor.DoctorId)
       .select(
         "b.BookingId",
@@ -347,19 +354,27 @@ const DoctorAppointments = async (req, res) => {
         "b.AppointmentTime",
         "b.BookingStatus",
         "b.RejectReason",
+
         "p.id as PatientId",
         "p.Name as PatientName",
-        "p.Email as PatientEmail",
+        "p.Email as PatientEmail"
       )
       .orderBy("b.AppointmentDate", "asc");
+
 
     return res.status(200).json({
       success: true,
       message: "Doctor Appointments",
       details: appointments,
     });
+
+
   } catch (error) {
-    console.log("DoctorAppointments Error:", error);
+
+    console.log(
+      "DoctorAppointments Error:",
+      error
+    );
 
     return res.status(500).json({
       success: false,
@@ -434,10 +449,13 @@ const AcceptAppointment = async (req, res) => {
 };
 // ===================== Reject Appointment =====================
 
+// ===================== Reject Appointment =====================
+
 const RejectAppointment = async (req, res) => {
   try {
     const { BookingId } = req.params;
-    const { RejectReason } = req.body;
+    const { reason } = req.body;
+
 
     const booking = await knex(`${SchemaName}.${BookingTable} as b`)
       .leftJoin(
@@ -461,6 +479,7 @@ const RejectAppointment = async (req, res) => {
       .where("b.BookingId", BookingId)
       .first();
 
+
     if (!booking) {
       return res.status(404).json({
         success: false,
@@ -468,13 +487,15 @@ const RejectAppointment = async (req, res) => {
       });
     }
 
+
     await knex(BookingTable)
       .withSchema(SchemaName)
       .where({ BookingId })
       .update({
         BookingStatus: "Rejected",
-        RejectReason,
+        RejectReason: reason,
       });
+
 
     await sendAppointmentRejectedMail(
       booking.Email,
@@ -484,20 +505,25 @@ const RejectAppointment = async (req, res) => {
       booking.HospitalName,
       booking.AppointmentDate,
       booking.AppointmentTime,
-      RejectReason
+      reason
     );
+
 
     return res.status(200).json({
       success: true,
       message: "Appointment Rejected Successfully",
     });
+
+
   } catch (error) {
+
     console.log("Reject Error:", error);
 
     return res.status(500).json({
       success: false,
       message: error.message,
     });
+
   }
 };
 module.exports = {
