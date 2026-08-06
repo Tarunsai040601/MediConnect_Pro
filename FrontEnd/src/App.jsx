@@ -16,7 +16,7 @@ import About from "./Components/DashBoards/PatientDashBoard/About/About";
 import ShowDoctorsData from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/ShowDoctorsData";
 import BookAppointment from "./Components/DashBoards/PatientDashBoard/BookAppointment/BookAppointment";
 import MyAppointments from "./Components/DashBoards/PatientDashBoard/MyAppointments/MyAppointments";
-import DoctorDetails from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/DoctorDetails/Doctordetails";
+import DoctorDetails from "./Components/DashBoards/PatientDashBoard/ShowDoctorsData/DoctorDetails/DoctorDetails";
 import DoctotLayout from "./Components/DashBoards/DoctorDashBoard/DoctorLayout/DoctotLayout";
 // import Myprofile from "./Components/DashBoards/DoctorDashBoard/Myprofile/Myprofile";
 import CreateProfile from "./Components/DashBoards/DoctorDashBoard/CreateProfile/CreateProfile";
