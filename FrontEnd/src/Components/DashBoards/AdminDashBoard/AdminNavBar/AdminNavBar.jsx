@@ -120,7 +120,7 @@ const AdminNavBar = () => {
             </NavLink>
           </li>
 
-          <li className="mca-nav__item">
+          {/* <li className="mca-nav__item">
             <NavLink
               to="/adminDashboard/Reviews"
               onClick={closeMenu}
@@ -128,7 +128,7 @@ const AdminNavBar = () => {
             >
               <FaStar className="mca-nav__icon" aria-hidden /> <span>Reviews</span>
             </NavLink>
-          </li>
+          </li> */}
 
           {/* keep a logout button inside the mobile slide menu */}
           <li className="mca-nav__item mca-nav__item--mobile-logout">

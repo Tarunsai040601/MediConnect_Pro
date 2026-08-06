@@ -16,28 +16,28 @@ const perfix = "/booking";
 BookingRouter.get(
   `${perfix}/myAppointments`,
   AuthMiddleWare,
-  roleMiddleware(["Patient"]),
+  roleMiddleware(["patient"]),
   MyAppointments
 );
 // booking
 BookingRouter.post(
   `${perfix}/create`,
   AuthMiddleWare,
-  roleMiddleware(["Patient"]),
+  roleMiddleware(["patient"]),
   Booking,
 );
 // update
 BookingRouter.patch(
   `${perfix}/update/:BookingId`,
   AuthMiddleWare,
-  roleMiddleware(["Patient"]),
+  roleMiddleware(["patient"]),
   UpdateBooking,
 );
 // delete booking
 BookingRouter.delete(
   `${perfix}/delete/:BookingId`,
   AuthMiddleWare,
-  roleMiddleware(["Patient"]),
+  roleMiddleware(["patient"]),
   DeleteBooking,
 );
 BookingRouter.get(

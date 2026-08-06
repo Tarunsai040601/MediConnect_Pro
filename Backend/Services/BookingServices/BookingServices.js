@@ -84,7 +84,7 @@ const Booking = async (req, res) => {
     const { id, name, email, role } = req.users;
 
     // Only Patient can book
-    if (role !== "Patient") {
+    if (role !== "patient") {
       return res.status(403).json({
         success: false,
         message: "Only patients can book appointments",
