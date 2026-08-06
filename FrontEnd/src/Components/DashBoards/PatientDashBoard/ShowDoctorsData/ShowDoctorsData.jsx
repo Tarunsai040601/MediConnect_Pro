@@ -38,7 +38,7 @@ const ShowDoctorsData = () => {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/doctorDetails/profile`);
+      const res = await axios.get(`${API_BASE}/doctorDetails/DoctorsAllProfile`);
 
       if (res.data.success) {
         setDoctors(res.data.details);

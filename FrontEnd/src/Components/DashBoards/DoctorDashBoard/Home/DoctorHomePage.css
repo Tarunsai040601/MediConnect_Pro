@@ -1,0 +1,315 @@
+.doctor-home{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    padding:60px 8%;
+    background:#ffffff;
+    overflow:hidden;
+}
+
+/* LEFT */
+
+.doctor-home-left{
+    flex:1;
+    animation:slideLeft 1s ease;
+}
+
+.welcome-tag{
+    display:inline-block;
+    background:#e8f8ff;
+    color:#0088c7;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.doctor-home-left h1{
+    font-size:4rem;
+    line-height:1.15;
+    font-weight:800;
+    color:#111;
+}
+
+.doctor-home-left h1 span{
+    color:#0d9adf;
+}
+
+.doctor-home-left p{
+    margin-top:25px;
+    font-size:18px;
+    line-height:1.8;
+    color:#666;
+    max-width:620px;
+}
+
+.doctor-btns{
+    display:flex;
+    gap:20px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.primary-btn{
+    background:#0d9adf;
+    color:#fff;
+    border:none;
+    padding:15px 28px;
+    border-radius:40px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:.4s;
+    font-size:16px;
+}
+
+.primary-btn:hover{
+    transform:translateY(-5px);
+    background:#007cc0;
+}
+
+.secondary-btn{
+    border:2px solid #0d9adf;
+    color:#0d9adf;
+    background:white;
+    padding:15px 28px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.secondary-btn:hover{
+    background:#0d9adf;
+    color:white;
+}
+
+.doctor-stats{
+    margin-top:50px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.stat-card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    width:180px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.stat-card svg{
+    color:#0d9adf;
+    font-size:28px;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+}
+
+/* RIGHT */
+
+.doctor-home-right{
+    flex:1;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:slideRight 1s ease;
+}
+
+.circle-bg{
+    width:550px;
+    height:550px;
+    background:#c8efff;
+    border-radius:50%;
+    position:absolute;
+    z-index:0;
+}
+
+.doctor-image{
+    width:430px;
+    position:relative;
+    z-index:2;
+    animation:float 4s ease-in-out infinite;
+}
+
+.floating-card{
+    position:absolute;
+    background:white;
+    padding:18px;
+    border-radius:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+    z-index:3;
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+.floating-card p{
+    color:#666;
+    font-size:14px;
+}
+
+.floating-card h3{
+    margin-top:5px;
+    color:#111;
+}
+
+.top-card{
+    top:40px;
+    left:40px;
+}
+
+.middle-card{
+    bottom:140px;
+    left:20px;
+}
+
+.bottom-card{
+    right:10px;
+    bottom:40px;
+}
+
+/* Animations */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@keyframes floatCard{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@keyframes slideLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-80px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes slideRight{
+
+    from{
+        opacity:0;
+        transform:translateX(80px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+/* Tablet */
+
+@media(max-width:1100px){
+
+.doctor-home{
+    flex-direction:column-reverse;
+    text-align:center;
+    padding:50px 5%;
+}
+
+.doctor-home-left h1{
+    font-size:3rem;
+}
+
+.doctor-btns{
+    justify-content:center;
+}
+
+.doctor-stats{
+    justify-content:center;
+}
+
+.circle-bg{
+    width:420px;
+    height:420px;
+}
+
+.doctor-image{
+    width:330px;
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.doctor-home-left h1{
+    font-size:2.3rem;
+}
+
+.doctor-home-left p{
+    font-size:16px;
+}
+
+.circle-bg{
+    width:300px;
+    height:300px;
+}
+
+.doctor-image{
+    width:240px;
+}
+
+.floating-card{
+    transform:scale(.8);
+}
+
+.top-card{
+    left:0;
+}
+
+.middle-card{
+    left:0;
+}
+
+.bottom-card{
+    right:0;
+}
+
+.stat-card{
+    width:100%;
+}
+
+}

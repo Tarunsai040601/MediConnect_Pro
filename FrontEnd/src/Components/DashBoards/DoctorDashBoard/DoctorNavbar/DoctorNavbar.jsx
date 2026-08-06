@@ -45,10 +45,7 @@ const DoctorNavbar = () => {
       </div>
 
       {/* Mobile Toggle */}
-      <div
-        className="menu-toggle"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
+      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
 
@@ -57,13 +54,17 @@ const DoctorNavbar = () => {
           Welcome: <strong>Dr. {doctorName}</strong>
         </div>
 
-        <li className={location.pathname === "/doctor/home" ? "active" : ""}>
-          <Link to="/doctor/home">
+        <li
+          className={location.pathname === "/DoctorDashboard" ? "active" : ""}
+        >
+          <Link to="/DoctorDashboard">
             <FaHome /> Home
           </Link>
         </li>
-<li className={location.pathname === "/DoctorDashboard" ? "active" : ""}>
-          <Link to="/DoctorDashboard">
+        <li
+          className={location.pathname === "/DoctorDashboard" ? "active" : ""}
+        >
+          <Link to="/DoctorDashboard/Createprofile">
             <FaUserCircle /> CraeteProfile
           </Link>
         </li>
@@ -77,8 +78,10 @@ const DoctorNavbar = () => {
           </Link>
         </li>
 
-        <li className={location.pathname === "/DoctorDashboard" ? "active" : ""}>
-          <Link to="/DoctorDashboard">
+        <li
+          className={location.pathname === "/DoctorDashboard" ? "active" : ""}
+        >
+          <Link to="/DoctorDashboard/Myprofile">
             <FaUserCircle /> My Profile
           </Link>
         </li>

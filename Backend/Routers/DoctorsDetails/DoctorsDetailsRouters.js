@@ -3,6 +3,7 @@ const {
   CreateProfile,
   UpdateProfile,
   doctorProfile,
+  GetDoctorsAllProfile,
 } = require("../../Services/DoctorDetailsServices/DoctorDetailsServices");
 const upload = require("../../StorageFiles/Muliter.js");
 const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare");
@@ -31,10 +32,30 @@ DoctorDetailsRouters.patch(
   `${perfix}/update`,
   AuthMiddleWare,
   roleMiddleware(["Doctor"]),
-  UpdateProfile,
+  upload.fields([
+    {
+      name: "ProfileImage",
+      maxCount: 1,
+    },
+    {
+      name: "WorkingImage",
+      maxCount: 10,
+    },
+  ]),
+  UpdateProfile
+);
+// fetch doctor details
+DoctorDetailsRouters.get(
+  `${perfix}/profile`,
+  AuthMiddleWare,
+  roleMiddleware(["Doctor"]),
+  doctorProfile,
 );
 
-// fetch doctor details
-DoctorDetailsRouters.get(`${perfix}/profile`, doctorProfile);
+// fetch all doctors
+DoctorDetailsRouters.get(
+  `${perfix}/DoctorsAllProfile`,
+  GetDoctorsAllProfile
+);
 
 module.exports = DoctorDetailsRouters;

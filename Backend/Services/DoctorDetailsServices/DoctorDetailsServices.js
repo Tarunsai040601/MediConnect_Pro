@@ -88,7 +88,6 @@ const CreateProfile = async (req, res) => {
       message: "Doctor profile created successfully",
       details: profile[0],
     });
-
   } catch (error) {
     console.log(error);
 
@@ -140,8 +139,7 @@ const UpdateProfile = async (req, res) => {
     if (ConsultationFee) updateData.ConsultationFee = ConsultationFee;
     if (AvailableDays) updateData.AvailableDays = AvailableDays;
     if (AvailableTime) updateData.AvailableTime = AvailableTime;
-    if (IsAvailable !== undefined)
-      updateData.IsAvailable = IsAvailable;
+    if (IsAvailable !== undefined) updateData.IsAvailable = IsAvailable;
 
     // Update Profile Image
     if (req.files?.ProfileImage) {
@@ -150,14 +148,14 @@ const UpdateProfile = async (req, res) => {
 
     // Update Working Images
     if (req.files?.WorkingImage) {
-      updateData.WorkingImage = req.files.WorkingImage.map(
-        (img) => img.path
-      );
-    }
+  updateData.WorkingImage = JSON.stringify(
+    req.files.WorkingImage.map((img) => img.path)
+  );
+}
 
     const updatedProfile = await knex(table_name)
       .withSchema(SchemaName)
-      .where({ AuthId: req.users.id })
+      .where({ AuthId: req.users.name })
       .update(updateData)
       .returning("*");
 
@@ -176,14 +174,14 @@ const UpdateProfile = async (req, res) => {
   }
 };
 
-
 // featch doctor profile
 const doctorProfile = async (req, res) => {
   try {
-
     const data = await knex("DoctorDetails as d")
       .withSchema(SchemaName)
       .join("AuthDetails as a", "a.Name", "d.AuthId")
+      .where("d.AuthId", req.users.name)
+      .first()
       .select(
         "d.DoctorId",
         "a.id",
@@ -201,17 +199,59 @@ const doctorProfile = async (req, res) => {
         "d.ConsultationFee",
         "d.AvailableDays",
         "d.AvailableTime",
-        "d.IsAvailable"
+        "d.IsAvailable",
       );
+    return res.status(200).json({
+      success: true,
+      details: data,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+// All Doctors Profile
+const GetDoctorsAllProfile = async (req, res) => {
+  try {
+    const doctors = await knex("DoctorDetails as d")
+      .withSchema(SchemaName)
+      .join("AuthDetails as a", "a.Name", "d.AuthId")
+      .select(
+        "d.DoctorId",
+        "a.Name",
+        "a.Email",
+        "d.Specialization",
+        "d.Qualification",
+        "d.Experience",
+        "d.ProfileImage",
+        "d.WorkingImage",
+        "d.PhoneNumber",
+        "d.HospitalName",
+        "d.HospitalAddress",
+        "d.AboutDoctor",
+        "d.ConsultationFee",
+        "d.AvailableDays",
+        "d.AvailableTime",
+        "d.IsAvailable",
+      );
+    console.log(doctors);
+    const formattedDoctors = doctors.map((doctor) => ({
+      ...doctor,
+      WorkingImage: doctor.WorkingImage || [],
+    }));
 
     return res.status(200).json({
       success: true,
-      message: "All Doctor Profiles",
-      details: data,
+      details: doctors,
     });
-
   } catch (error) {
-    console.log(error);
+    console.log("GetDoctorsAllProfile Error:", error);
 
     return res.status(500).json({
       success: false,
@@ -223,4 +263,5 @@ module.exports = {
   CreateProfile,
   UpdateProfile,
   doctorProfile,
+  GetDoctorsAllProfile,
 };

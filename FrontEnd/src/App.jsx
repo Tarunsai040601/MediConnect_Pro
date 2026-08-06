@@ -20,6 +20,7 @@ import DoctorDetails from "./Components/DashBoards/PatientDashBoard/ShowDoctorsD
 import DoctotLayout from "./Components/DashBoards/DoctorDashBoard/DoctorLayout/DoctotLayout";
 // import Myprofile from "./Components/DashBoards/DoctorDashBoard/Myprofile/Myprofile";
 import CreateProfile from "./Components/DashBoards/DoctorDashBoard/CreateProfile/CreateProfile";
+import Myprofile from "./Components/DashBoards/DoctorDashBoard/Myprofile/Myprofile";
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
       <Route path="/DoctorDashboard" element={<DoctotLayout />}>
         <Route index element={<DoctorHomePage />} />
         <Route path="Createprofile" element={<CreateProfile/>} />
+        <Route path="Myprofile" element={<Myprofile/>}/>
       </Route>
     </Routes>
   );
