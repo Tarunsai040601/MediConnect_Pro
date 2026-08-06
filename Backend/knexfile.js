@@ -1,26 +1,30 @@
-// Update with your config settings.
+require("dotenv").config();
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
-const dotenv=require('dotenv').config({quiet:true})
 module.exports = {
-
   development: {
     client: "pg",
     connection: {
       host: process.env.host,
       port: process.env.port,
       user: process.env.user,
-      password:process.env.password,
-      database:process.env.database
+      password: process.env.password,
+      database: process.env.database,
     },
-
     migrations: {
-      directory: "./Models"
-    }
+      directory: "./Models",
+    },
   },
 
-  
-
+  production: {
+    client: "pg",
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
+    migrations: {
+      directory: "./Models",
+    },
+  },
 };

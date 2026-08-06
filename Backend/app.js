@@ -29,6 +29,10 @@ app.use("/api", DoctorDetailsRouters);
 app.use("/api", BookingRouter);
 // recipet
 app.use("/api",RecipetRouter)
+
+app.get("/", (req, res) => {
+  res.send("MediConnect Pro Backend is Running 🚀");
+});
 app.listen(port, () => {
   console.log(`server is runing on http://localhost:${port}`);
 });
