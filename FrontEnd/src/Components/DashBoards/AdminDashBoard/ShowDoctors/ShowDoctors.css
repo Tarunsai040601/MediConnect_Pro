@@ -17,7 +17,7 @@
 
 .doctorTop h2 {
   font-size: 32px;
-  color: #0f4c81;
+  color: var(--primary);
   font-weight: 700;
   text-align: center;
 }
@@ -76,7 +76,7 @@
   height: 90px;
   margin: auto;
   border-radius: 50%;
-  background: #0f4c81;
+  background: var(--primary);
   color: white;
   display: flex;
   justify-content: center;
@@ -86,7 +86,7 @@
 
 .doctorCard h3 {
   margin: 15px 0;
-  color: #0f4c81;
+  color: var(--primary);
 }
 
 .doctorCard p {
@@ -169,7 +169,7 @@
   padding: 12px;
   border: none;
   border-radius: 10px;
-  background: #0f4c81;
+  background: var(--primary);
   color: white;
   cursor: pointer;
   margin-top: 15px;
@@ -209,6 +209,6 @@
   }
 }
 .doctorSearch:focus-within {
-  border-color: #0f4c81;
+  border-color: var(--primary);
   box-shadow: 0 10px 30px rgba(15, 76, 129, 0.25);
 }

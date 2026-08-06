@@ -9,13 +9,13 @@
   --mca-primary: #2563eb;
   --mca-primary-hover: #1d4ed8;
   --mca-text-main: #1e293b;
-  --mca-text-muted: #64748b;
+  --mca-text-muted: var(--text-muted);
   --mca-danger: #ef4444;
   --mca-danger-hover: #dc2626;
   --mca-nav-shadow: 0 2px 10px rgba(2, 6, 23, 0.04);
   --mca-border: rgba(255, 255, 255, 0.3);
 
-  box-sizing: border-box;
+  /* box-sizing handled globally */
   width: 100%;
   height: 68px;
   display: flex;
@@ -35,7 +35,7 @@
 .mca-nav *,
 .mca-nav *::before,
 .mca-nav *::after {
-  box-sizing: border-box;
+  /* box-sizing handled globally */
 }
 
 /* ---------- Brand / logo ---------- */

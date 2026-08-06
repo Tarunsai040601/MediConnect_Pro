@@ -4,10 +4,12 @@ import DoctorNavbar from "../DoctorNavbar/DoctorNavbar";
 
 const DoctotLayout = () => {
   return (
-    <>
+    <div className="layout-wrapper">
       <DoctorNavbar />
-      <Outlet />
-    </>
+      <div className="page-content">
+        <Outlet />
+      </div>
+    </div>
   );
 };
 

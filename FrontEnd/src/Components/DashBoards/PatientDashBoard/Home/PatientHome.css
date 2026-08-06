@@ -5,13 +5,13 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing handled globally */
 }
 
 .patient-home {
   width: 100%;
   min-height: 100vh;
-  background: #f5f8fc;
+  background: transparent;
   overflow-x: hidden;
   animation: fadeIn 0.8s ease;
 }
@@ -83,7 +83,7 @@
 
 .primary-btn {
   background: #ffd54f;
-  color: #0f4c81;
+  color: var(--primary);
 }
 
 .primary-btn:hover {
@@ -129,16 +129,21 @@
 }
 
 .stat-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   padding: 30px;
-  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  transition: .3s;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
 }
 
 .stat-card:hover {
+  background: rgba(255, 255, 255, 0.55);
   transform: translateY(-10px);
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 58, 0.3);
 }
 
 .stat-card svg {
@@ -149,7 +154,7 @@
 
 .stat-card h2 {
   font-size: 32px;
-  color: #0f4c81;
+  color: var(--primary);
 }
 
 .stat-card p {
@@ -166,7 +171,7 @@
 
 .section-title h2 {
   font-size: 38px;
-  color: #0f4c81;
+  color: var(--primary);
 }
 
 .section-title p {
@@ -189,16 +194,21 @@
 }
 
 .service-card {
-  background: white;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   padding: 35px 25px;
   text-align: center;
-  transition: .3s;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
 }
 
 .service-card:hover {
+  background: rgba(255, 255, 255, 0.55);
   transform: translateY(-10px);
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 58, 0.3);
 }
 
 .service-icon {
@@ -206,17 +216,19 @@
   height: 80px;
   margin: auto;
   border-radius: 50%;
-  background: #e3f2fd;
-  color: #1976d2;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  color: var(--primary);
   font-size: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(255,255,255,0.8);
 }
 
 .service-card h3 {
   margin: 20px 0 15px;
-  color: #0f4c81;
+  color: var(--primary);
 }
 
 .service-card p {
@@ -229,7 +241,7 @@
   border: none;
   padding: 12px 24px;
   border-radius: 30px;
-  background: #1976d2;
+  background: var(--primary);
   color: white;
   cursor: pointer;
   display: inline-flex;
@@ -238,7 +250,7 @@
 }
 
 .service-card button:hover {
-  background: #0f4c81;
+  background: var(--primary-hover);
 }
 
 /* ================= WHY ================= */
@@ -256,16 +268,21 @@
 }
 
 .why-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   padding: 35px;
-  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  transition: .3s;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
 }
 
 .why-card:hover {
+  background: rgba(255, 255, 255, 0.55);
   transform: scale(1.04);
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 58, 0.3);
 }
 
 .why-card svg {
@@ -275,7 +292,7 @@
 }
 
 .why-card h3 {
-  color: #0f4c81;
+  color: var(--primary);
   margin-bottom: 15px;
 }
 
@@ -289,7 +306,7 @@
 .appointment-banner {
   width: 90%;
   margin: 0 auto 80px;
-  background: linear-gradient(135deg,#0f4c81,#1976d2);
+  background: linear-gradient(135deg,var(--primary),#1976d2);
   color: white;
   border-radius: 20px;
   padding: 45px;
@@ -310,7 +327,7 @@
 .appointment-banner button {
   border: none;
   background: #ffd54f;
-  color: #0f4c81;
+  color: var(--primary);
   padding: 15px 30px;
   border-radius: 35px;
   cursor: pointer;

@@ -5,13 +5,13 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing handled globally */
 }
 
 .about-page {
   width: 100%;
   min-height: 100vh;
-  background: #f7f9fc;
+  background: transparent;
   overflow-x: hidden;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .about-content h2 {
-  color: #0f4c81;
+  color: var(--primary);
   font-size: 2.4rem;
   margin-bottom: 25px;
 }
@@ -98,16 +98,21 @@
 }
 
 .mission-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   padding: 40px;
-  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  transition: .3s;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
 }
 
 .mission-card:hover {
+  background: rgba(255, 255, 255, 0.55);
   transform: translateY(-10px);
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 58, 0.3);
 }
 
 .mission-card svg {
@@ -117,7 +122,7 @@
 }
 
 .mission-card h3 {
-  color: #0f4c81;
+  color: var(--primary);
   margin-bottom: 15px;
 }
 
@@ -137,7 +142,7 @@
 .why-section h2 {
   text-align: center;
   font-size: 2.5rem;
-  color: #0f4c81;
+  color: var(--primary);
   margin-bottom: 45px;
 }
 
@@ -148,16 +153,21 @@
 }
 
 .why-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   padding: 35px 25px;
   text-align: center;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  transition: .3s;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
 }
 
 .why-card:hover {
+  background: rgba(255, 255, 255, 0.55);
   transform: translateY(-10px);
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 58, 0.3);
 }
 
 .why-card svg {
@@ -167,7 +177,7 @@
 }
 
 .why-card h3 {
-  color: #0f4c81;
+  color: var(--primary);
   margin-bottom: 12px;
 }
 
@@ -187,7 +197,7 @@
 }
 
 .stat-box {
-  background: linear-gradient(135deg,#0f4c81,#1976d2);
+  background: linear-gradient(135deg,var(--primary),#1976d2);
   color: white;
   padding: 35px;
   border-radius: 18px;
@@ -211,6 +221,95 @@
 
 .stat-box p {
   font-size: 17px;
+}
+
+/* ================= NEW SECTIONS ================= */
+
+/* Emergency */
+.emergency-section, .hospitals-section, .reviews-section {
+  width: 90%;
+  margin: 0 auto 80px;
+}
+
+.emergency-section h2, .hospitals-section h2, .reviews-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 45px;
+}
+
+.emergency-container, .hospitals-grid, .reviews-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.emergency-container { grid-template-columns: repeat(3, 1fr); }
+.hospitals-grid { grid-template-columns: repeat(4, 1fr); }
+.reviews-grid { grid-template-columns: repeat(3, 1fr); }
+
+.emergency-card, .hospital-card, .review-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  padding: 35px 25px;
+  text-align: center;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+}
+
+.emergency-card:hover, .hospital-card:hover, .review-card:hover {
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-10px);
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 58, 0.3);
+}
+
+.emergency-card svg, .hospital-card svg {
+  font-size: 45px;
+  color: #ef4444; /* red for emergency */
+  margin-bottom: 20px;
+}
+
+.hospital-card svg {
+  color: var(--primary);
+}
+
+.emergency-card h3, .hospital-card h3 {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.emergency-card p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.hospital-card p {
+  color: var(--text-muted);
+}
+
+.review-card {
+  text-align: left;
+}
+
+.review-card .stars {
+  color: #f59e0b;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.review-card p {
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.review-card h4 {
+  color: var(--primary);
+  font-weight: bold;
 }
 
 /* ================= ANIMATION ================= */
@@ -240,11 +339,11 @@
     grid-template-columns:1fr;
 }
 
-.why-grid{
+.why-grid, .hospitals-grid{
     grid-template-columns:repeat(2,1fr);
 }
 
-.stats-section{
+.stats-section, .emergency-container, .reviews-grid {
     grid-template-columns:repeat(2,1fr);
 }
 
@@ -268,11 +367,7 @@
     font-size:2rem;
 }
 
-.why-grid{
-    grid-template-columns:1fr;
-}
-
-.stats-section{
+.why-grid, .hospitals-grid, .emergency-container, .reviews-grid, .stats-section{
     grid-template-columns:1fr;
 }
 
@@ -295,7 +390,10 @@
 
 .mission-card,
 .why-card,
-.stat-box{
+.stat-box,
+.emergency-card,
+.hospital-card,
+.review-card{
     padding:25px;
 }
 

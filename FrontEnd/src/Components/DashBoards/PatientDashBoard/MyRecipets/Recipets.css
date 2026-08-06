@@ -74,7 +74,7 @@
 }
 
 .details-grid div {
-  background: #f8fafc;
+  background: var(--bg-main);
 
   padding: 15px;
 
@@ -84,7 +84,7 @@
 .details-grid span {
   display: block;
 
-  color: #64748b;
+  color: var(--text-muted);
 
   font-size: 14px;
 }
@@ -99,7 +99,7 @@
 
 .diagnosis,
 .instructions {
-  background: #f8fafc;
+  background: var(--bg-main);
 
   padding: 15px;
 
@@ -109,7 +109,7 @@
 }
 
 .medicine-box {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
 
   border-radius: 10px;
 
@@ -123,7 +123,7 @@
 
   padding: 15px;
 
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .medicine-row:last-child {
@@ -135,7 +135,7 @@
 
   margin-top: 25px;
 
-  color: #64748b;
+  color: var(--text-muted);
 
   font-size: 14px;
 }

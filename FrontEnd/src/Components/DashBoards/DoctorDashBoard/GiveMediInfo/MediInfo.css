@@ -136,7 +136,7 @@ tbody tr:last-child {
 }
 
 tbody tr:hover {
-  background: #f8fafc;
+  background: var(--bg-main);
 }
 
 td {

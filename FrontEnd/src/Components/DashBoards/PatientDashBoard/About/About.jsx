@@ -9,6 +9,8 @@ import {
   FaEye,
   FaUsers,
   FaAward,
+  FaPhoneAlt,
+  FaStar,
 } from "react-icons/fa";
 
 const About = () => {
@@ -145,6 +147,83 @@ const About = () => {
           <p>Medical Support</p>
         </div>
 
+      </section>
+
+      {/* Emergency & Support */}
+      <section className="emergency-section">
+        <h2>Emergency Support & Contacts</h2>
+        <div className="emergency-container">
+          <div className="emergency-card">
+            <FaPhoneAlt />
+            <h3>Ambulance</h3>
+            <p>102 / 108</p>
+          </div>
+          <div className="emergency-card">
+            <FaPhoneAlt />
+            <h3>General Helpline</h3>
+            <p>104</p>
+          </div>
+          <div className="emergency-card">
+            <FaPhoneAlt />
+            <h3>MediConnect Support</h3>
+            <p>1800-123-4567</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tied Up Hospitals */}
+      <section className="hospitals-section">
+        <h2>Our Partner Hospitals</h2>
+        <div className="hospitals-grid">
+          <div className="hospital-card">
+            <FaHospital />
+            <h3>Apollo Hospitals</h3>
+            <p>Multi-Specialty Care</p>
+          </div>
+          <div className="hospital-card">
+            <FaHospital />
+            <h3>Fortis Healthcare</h3>
+            <p>Advanced Surgery Center</p>
+          </div>
+          <div className="hospital-card">
+            <FaHospital />
+            <h3>Max Super Specialty</h3>
+            <p>Cardiac & Neuro Center</p>
+          </div>
+          <div className="hospital-card">
+            <FaHospital />
+            <h3>AIIMS</h3>
+            <p>Premier Research & Care</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews & Testimonials */}
+      <section className="reviews-section">
+        <h2>Patient Reviews</h2>
+        <div className="reviews-grid">
+          <div className="review-card">
+            <div className="stars">
+              <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+            </div>
+            <p>"MediConnectPro made booking my appointments so easy. I no longer have to wait in long queues at the hospital."</p>
+            <h4>- Rahul S.</h4>
+          </div>
+          <div className="review-card">
+            <div className="stars">
+              <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+            </div>
+            <p>"The best healthcare platform I've used. Accessing my medical records securely is incredibly convenient."</p>
+            <h4>- Priya M.</h4>
+          </div>
+          <div className="review-card">
+            <div className="stars">
+              <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+            </div>
+            <p>"Highly recommend! The doctors are very professional and the partner hospitals provide excellent facilities."</p>
+            <h4>- Amit V.</h4>
+          </div>
+        </div>
       </section>
 
     </div>

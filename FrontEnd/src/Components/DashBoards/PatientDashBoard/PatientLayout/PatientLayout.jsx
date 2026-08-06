@@ -3,9 +3,11 @@ import PatientNavBar from "../PatientNavBar/PatientNavBar";
 import { Outlet } from "react-router-dom";
 const PatientLayout = () => {
   return (
-    <div>
+    <div className="layout-wrapper">
       <PatientNavBar />
-      <Outlet />
+      <div className="page-content">
+        <Outlet />
+      </div>
     </div>
   );
 };
