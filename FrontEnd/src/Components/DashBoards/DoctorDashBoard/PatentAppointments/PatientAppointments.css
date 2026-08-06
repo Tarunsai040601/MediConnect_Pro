@@ -1,0 +1,233 @@
+.doctorAppointments {
+  padding: 30px;
+  background: #f4f7fc;
+  min-height: 100vh;
+  animation: fadeIn 0.5s ease;
+}
+
+.doctorAppointments h1 {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2563eb;
+  font-size: 22px;
+}
+
+.appointmentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 25px;
+}
+
+.appointmentCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.35s;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+.appointmentCard::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  top: 0;
+  left: 0;
+}
+
+.appointmentCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.18);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 10px;
+}
+
+.cardTop h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e3a8a;
+  font-size: 22px;
+}
+
+.appointmentCard p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #444;
+  margin: 12px 0;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.appointmentCard p svg {
+  color: #2563eb;
+  min-width: 18px;
+}
+
+.appointmentCard strong {
+  color: #111827;
+}
+
+.status {
+  padding: 7px 15px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.pending {
+  background: #f59e0b;
+}
+
+.status.accepted {
+  background: #16a34a;
+}
+
+.status.rejected {
+  background: #dc2626;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.buttonGroup button {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.acceptBtn {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.acceptBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.3);
+}
+
+.rejectBtn {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.rejectBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(220, 38, 38, 0.3);
+}
+
+.noData {
+  text-align: center;
+  color: #6b7280;
+  font-size: 22px;
+  margin-top: 40px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 992px) {
+  .doctorAppointments {
+    padding: 20px;
+  }
+
+  .appointmentGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .doctorAppointments h1 {
+    font-size: 28px;
+  }
+
+  .appointmentCard {
+    padding: 18px;
+  }
+
+  .cardTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardTop h2 {
+    font-size: 20px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .buttonGroup button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .doctorAppointments {
+    padding: 15px;
+  }
+
+  .appointmentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentCard {
+    padding: 15px;
+  }
+
+  .appointmentCard p {
+    font-size: 14px;
+  }
+
+  .doctorAppointments h1 {
+    font-size: 24px;
+  }
+}

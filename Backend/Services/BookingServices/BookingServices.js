@@ -1,11 +1,15 @@
 const { knex } = require("../../Configurations/config");
-const sendAppointmentMail = require("../../Configurations/Utils/SendEmail.js");
+const {
+  sendAppointmentMail,
+  sendAppointmentAcceptedMail,
+  sendAppointmentRejectedMail,
+} = require("../../Configurations/Utils/SendEmail");
 
 const BookingTable = "PatientBookingDetails";
 const GetAllPatients = "AuthDetails";
 const DoctorTable = "DoctorDetails";
 const SchemaName = "HospitalManagement_Sysytem";
-// =======================my appointments======================
+
 // ===================== My Appointments =====================
 
 const MyAppointments = async (req, res) => {
@@ -13,11 +17,7 @@ const MyAppointments = async (req, res) => {
     const { id } = req.users;
 
     const bookings = await knex(`${SchemaName}.${BookingTable} as b`)
-      .leftJoin(
-        `${SchemaName}.${DoctorTable} as d`,
-        "b.DoctorId",
-        "d.DoctorId"
-      )
+      .leftJoin(`${SchemaName}.${DoctorTable} as d`, "b.DoctorId", "d.DoctorId")
       .select(
         "b.BookingId",
         "b.Disease",
@@ -30,7 +30,7 @@ const MyAppointments = async (req, res) => {
         "d.Specialization",
         "d.HospitalName",
         "d.ProfileImage",
-        "d.ConsultationFee"
+        "d.ConsultationFee",
       )
       .where("b.PatientId", id)
       .orderBy("b.AppointmentDate", "desc");
@@ -316,10 +316,197 @@ const DeleteBooking = async (req, res) => {
   }
 };
 
+// ===================== Doctor Appointments =====================
+
+const DoctorAppointments = async (req, res) => {
+  try {
+    const doctorName = req.users.name;
+
+    // Doctor Details
+    const doctor = await knex(DoctorTable)
+      .withSchema(SchemaName)
+      .where({ AuthId: doctorName })
+      .first();
+
+    if (!doctor) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor profile not found",
+      });
+    }
+
+    const appointments = await knex(`${BookingTable} as b`)
+      .withSchema(SchemaName)
+      .join(`${GetAllPatients} as p`, "b.PatientId", "p.id")
+      .where("b.DoctorId", doctor.DoctorId)
+      .select(
+        "b.BookingId",
+        "b.Disease",
+        "b.Symptoms",
+        "b.AppointmentDate",
+        "b.AppointmentTime",
+        "b.BookingStatus",
+        "b.RejectReason",
+        "p.id as PatientId",
+        "p.Name as PatientName",
+        "p.Email as PatientEmail",
+      )
+      .orderBy("b.AppointmentDate", "asc");
+
+    return res.status(200).json({
+      success: true,
+      message: "Doctor Appointments",
+      details: appointments,
+    });
+  } catch (error) {
+    console.log("DoctorAppointments Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+// ===================== Accept Appointment =====================
+
+const AcceptAppointment = async (req, res) => {
+  try {
+    const { BookingId } = req.params;
+
+    const booking = await knex(`${SchemaName}.${BookingTable} as b`)
+      .leftJoin(
+        `${SchemaName}.${DoctorTable} as d`,
+        "b.DoctorId",
+        "d.DoctorId"
+      )
+      .leftJoin(
+        `${SchemaName}.AuthDetails as a`,
+        "b.PatientId",
+        "a.id"
+      )
+      .select(
+        "b.*",
+        "a.Name as PatientName",
+        "a.Email",
+        "d.AuthId as DoctorName",
+        "d.Specialization",
+        "d.HospitalName"
+      )
+      .where("b.BookingId", BookingId)
+      .first();
+
+    if (!booking) {
+      return res.status(404).json({
+        success: false,
+        message: "Appointment not found",
+      });
+    }
+
+    await knex(BookingTable)
+      .withSchema(SchemaName)
+      .where({ BookingId })
+      .update({
+        BookingStatus: "Accepted",
+      });
+
+    await sendAppointmentAcceptedMail(
+      booking.Email,
+      booking.PatientName,
+      booking.DoctorName,
+      booking.Specialization,
+      booking.HospitalName,
+      booking.AppointmentDate,
+      booking.AppointmentTime
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Appointment Accepted Successfully",
+    });
+  } catch (error) {
+    console.log("Accept Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+// ===================== Reject Appointment =====================
+
+const RejectAppointment = async (req, res) => {
+  try {
+    const { BookingId } = req.params;
+    const { RejectReason } = req.body;
+
+    const booking = await knex(`${SchemaName}.${BookingTable} as b`)
+      .leftJoin(
+        `${SchemaName}.${DoctorTable} as d`,
+        "b.DoctorId",
+        "d.DoctorId"
+      )
+      .leftJoin(
+        `${SchemaName}.AuthDetails as a`,
+        "b.PatientId",
+        "a.id"
+      )
+      .select(
+        "b.*",
+        "a.Name as PatientName",
+        "a.Email",
+        "d.AuthId as DoctorName",
+        "d.Specialization",
+        "d.HospitalName"
+      )
+      .where("b.BookingId", BookingId)
+      .first();
+
+    if (!booking) {
+      return res.status(404).json({
+        success: false,
+        message: "Appointment not found",
+      });
+    }
+
+    await knex(BookingTable)
+      .withSchema(SchemaName)
+      .where({ BookingId })
+      .update({
+        BookingStatus: "Rejected",
+        RejectReason,
+      });
+
+    await sendAppointmentRejectedMail(
+      booking.Email,
+      booking.PatientName,
+      booking.DoctorName,
+      booking.Specialization,
+      booking.HospitalName,
+      booking.AppointmentDate,
+      booking.AppointmentTime,
+      RejectReason
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Appointment Rejected Successfully",
+    });
+  } catch (error) {
+    console.log("Reject Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 module.exports = {
   MyAppointments,
   GetallPatients,
   Booking,
   UpdateBooking,
   DeleteBooking,
+  DoctorAppointments,
+  AcceptAppointment,
+  RejectAppointment,
 };

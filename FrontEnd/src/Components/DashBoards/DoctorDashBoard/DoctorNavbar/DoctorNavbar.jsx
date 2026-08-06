@@ -70,11 +70,11 @@ const DoctorNavbar = () => {
         </li>
         <li
           className={
-            location.pathname === "/doctor/appointments" ? "active" : ""
+            location.pathname === "/DoctorDashboard" ? "active" : ""
           }
         >
-          <Link to="/doctor/appointments">
-            <FaCalendarCheck /> My Appointments
+          <Link to="/DoctorDashboard/PatientAppointments">
+            <FaCalendarCheck /> Appointments
           </Link>
         </li>
 
