@@ -56,6 +56,7 @@ const Register = async (req, res) => {
         Password: PasswordHashing,
       })
       .returning("*");
+    console.log(setUser);
     return res.status(200).json({
       success: true,
       UserDetails: {
@@ -127,7 +128,7 @@ const Login = async (req, res) => {
       success: true,
       message: "login sucessfully",
       details: { id: Found.id, email: Found.Email, role: Found.Role },
-      tokenDetails:{token}
+      tokenDetails: { token },
     });
   } catch (error) {
     console.log("error_data:", error);
