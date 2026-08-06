@@ -1,8 +1,8 @@
 const express = require("express");
 
-const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare");
+const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare.js");
 
-const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware");
+const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware.js");
 
 const {
   CreateRecipet,
@@ -10,7 +10,7 @@ const {
   getByNameRecipet,
   deleteByNameRecipet,
   getDoctorRecipets,
-} = require("../../Services/RecipetServices/RecipetServices");
+} = require("../../Services/RecipetServices/RecipetServices.js");
 
 const RecipetRouter = express.Router();
 

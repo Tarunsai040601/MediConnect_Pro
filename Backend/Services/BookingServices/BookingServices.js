@@ -1,9 +1,9 @@
-const { knex } = require("../../Configurations/config");
+const { knex } = require("../../Configurations/config.js");
 const {
   sendAppointmentMail,
   sendAppointmentAcceptedMail,
   sendAppointmentRejectedMail,
-} = require("../../Configurations/Utils/SendEmail");
+} = require("../../Configurations/Utils/SendEmail.js");
 
 const BookingTable = "PatientBookingDetails";
 const GetAllPatients = "AuthDetails";

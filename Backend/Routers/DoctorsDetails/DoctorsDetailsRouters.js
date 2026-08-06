@@ -4,10 +4,10 @@ const {
   UpdateProfile,
   doctorProfile,
   GetDoctorsAllProfile,
-} = require("../../Services/DoctorDetailsServices/DoctorDetailsServices");
+} = require("../../Services/DoctorDetailsServices/DoctorDetailsServices.js");
 const upload = require("../../StorageFiles/Muliter.js");
-const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare");
-const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware");
+const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare.js");
+const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware.js");
 const DoctorDetailsRouters = express.Router();
 const perfix = "/doctorDetails";
 // craete profile

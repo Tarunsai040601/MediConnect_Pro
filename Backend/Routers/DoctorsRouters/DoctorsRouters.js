@@ -6,9 +6,9 @@ const {
   GetDoctorById,
   DeleteDoctor,
   FetchallDoctors,
-} = require("../../Services/DoctorsServices/DoctorServices");
-const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare");
-const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware");
+} = require("../../Services/DoctorsServices/DoctorServices.js");
+const AuthMiddleWare = require("../../MiddleWares/AuthMiddleWare/AuthMiddleWare.js");
+const roleMiddleware = require("../../MiddleWares/RoleMiddleware/RoleMiddleware.js");
 const DoctorRouter = express.Router();
 const perfix = "/doctor";
 // get doctor after login admin

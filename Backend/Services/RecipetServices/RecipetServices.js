@@ -1,4 +1,4 @@
-const { knex } = require("../../Configurations/config");
+const { knex } = require("../../Configurations/config.js");
 
 const TableName = "PrescriptionDetails";
 const SchemaName = "HospitalManagement_Sysytem";
