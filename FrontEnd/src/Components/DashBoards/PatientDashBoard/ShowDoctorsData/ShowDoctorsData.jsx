@@ -19,26 +19,44 @@ const ShowDoctorsData = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // New State
+  const [selectedSpecialization, setSelectedSpecialization] = useState("All");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchDoctors();
   }, []);
 
+  // Filter + Search
   useEffect(() => {
-    const filtered = doctors.filter((doctor) => {
-      return (
-        doctor.Name?.toLowerCase().includes(search.toLowerCase()) ||
-        doctor.Specialization?.toLowerCase().includes(search.toLowerCase())
+    let filtered = doctors;
+
+    // Search Filter
+    if (search) {
+      filtered = filtered.filter(
+        (doctor) =>
+          doctor.Name?.toLowerCase().includes(search.toLowerCase()) ||
+          doctor.Specialization?.toLowerCase().includes(search.toLowerCase())
       );
-    });
+    }
+
+    // Specialization Filter
+    if (selectedSpecialization !== "All") {
+      filtered = filtered.filter(
+        (doctor) =>
+          doctor.Specialization === selectedSpecialization
+      );
+    }
 
     setFilteredDoctors(filtered);
-  }, [search, doctors]);
+  }, [search, doctors, selectedSpecialization]);
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/doctorDetails/DoctorsAllProfile`);
+      const res = await axios.get(
+        `${API_BASE}/doctorDetails/DoctorsAllProfile`
+      );
 
       if (res.data.success) {
         setDoctors(res.data.details);
@@ -51,17 +69,23 @@ const ShowDoctorsData = () => {
     }
   };
 
+  // Unique Specializations
+  const specializations = [
+    "All",
+    ...new Set(doctors.map((doctor) => doctor.Specialization)),
+  ];
+
   const handleView = (doctor) => {
     navigate(`/Mediconnect/doctor/${doctor.DoctorId}`, {
       state: doctor,
     });
   };
 
- const handleBook = (doctor) => {
-  navigate("/Mediconnect/BookAppointment", {
-    state: doctor,
-  });
-};
+  const handleBook = (doctor) => {
+    navigate("/Mediconnect/BookAppointment", {
+      state: doctor,
+    });
+  };
 
   if (loading) {
     return (
@@ -74,10 +98,14 @@ const ShowDoctorsData = () => {
   return (
     <div className="show-doctors-page">
 
+      {/* Header */}
+
       <div className="doctor-header">
         <h1>Our Specialist Doctors</h1>
         <p>Find the right doctor and book your appointment.</p>
       </div>
+
+      {/* Search */}
 
       <div className="search-box">
         <FaSearch />
@@ -90,8 +118,27 @@ const ShowDoctorsData = () => {
         />
       </div>
 
-      <div className="doctor-grid">
+      {/* Specialization Buttons */}
 
+      <div className="specialization-filter">
+        {specializations.map((item, index) => (
+          <button
+            key={index}
+            className={
+              selectedSpecialization === item
+                ? "filter-btn active"
+                : "filter-btn"
+            }
+            onClick={() => setSelectedSpecialization(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+
+      {/* Doctors */}
+
+      <div className="doctor-grid">
         {filteredDoctors.length === 0 ? (
           <h2 className="no-data">
             No Doctors Found
@@ -103,7 +150,6 @@ const ShowDoctorsData = () => {
               key={doctor.DoctorId}
             >
               <div className="doctor-image">
-
                 <img
                   src={doctor.ProfileImage}
                   alt={doctor.Name}
@@ -124,7 +170,6 @@ const ShowDoctorsData = () => {
                     ? "Available"
                     : "Unavailable"}
                 </span>
-
               </div>
 
               <div className="doctor-details">
@@ -135,13 +180,13 @@ const ShowDoctorsData = () => {
 
                 <p>
                   <FaBriefcaseMedical />
-                  <strong>Specialization :</strong>{" "}
+                  <strong> Specialization :</strong>{" "}
                   {doctor.Specialization}
                 </p>
 
                 <p>
                   <FaClock />
-                  <strong>Experience :</strong>{" "}
+                  <strong> Experience :</strong>{" "}
                   {doctor.Experience}
                 </p>
 
@@ -170,7 +215,6 @@ const ShowDoctorsData = () => {
             </div>
           ))
         )}
-
       </div>
 
     </div>
