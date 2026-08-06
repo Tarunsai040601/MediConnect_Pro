@@ -83,6 +83,9 @@ const PatientNavBar = () => {
         <li>
           <Link to="/Mediconnect/MyAppointments">My Appointments</Link>
         </li>
+        <li>
+          <Link to="/Mediconnect/Myrecipet">Recipets</Link>
+        </li>
 
         <div className="patient-profile">
          

@@ -1,0 +1,194 @@
+.prescription-container {
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.prescription-container h2 {
+  margin-bottom: 20px;
+  color: #2563eb;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- Layout: form + table side by side ---------- */
+
+.prescription-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.prescription-form-section {
+  flex: 0 0 380px;
+}
+
+.prescription-table-section {
+  flex: 1;
+  min-width: 320px;
+}
+
+/* ---------- Form ---------- */
+
+.prescription-form {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prescription-form input,
+.prescription-form textarea {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.prescription-form input:focus,
+.prescription-form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.prescription-form textarea {
+  height: 80px;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.prescription-form button {
+  background: #2563eb;
+  color: white;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.prescription-form button:hover {
+  background: #1d4ed8;
+}
+
+.prescription-form button:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Table ---------- */
+
+.prescription-table {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  position: sticky;
+  top: 0;
+}
+
+th:first-child {
+  border-top-left-radius: 14px;
+}
+
+th:last-child {
+  border-top-right-radius: 14px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eef0f3;
+  transition: background 0.15s;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+td {
+  color: #1f2937;
+  font-size: 14px;
+}
+
+td[colspan] {
+  text-align: center;
+  padding: 30px;
+  color: #9ca3af;
+  font-style: italic;
+  white-space: normal;
+}
+
+/* ---------- Delete button ---------- */
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .prescription-content {
+    flex-direction: column;
+  }
+
+  .prescription-form-section {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .prescription-container {
+    padding: 16px;
+  }
+
+  .prescription-form {
+    padding: 18px;
+  }
+}

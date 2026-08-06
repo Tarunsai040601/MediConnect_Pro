@@ -22,6 +22,8 @@ import DoctotLayout from "./Components/DashBoards/DoctorDashBoard/DoctorLayout/D
 import CreateProfile from "./Components/DashBoards/DoctorDashBoard/CreateProfile/CreateProfile";
 import Myprofile from "./Components/DashBoards/DoctorDashBoard/Myprofile/Myprofile";
 import PatientAppointments from "./Components/DashBoards/DoctorDashBoard/PatentAppointments/PatientAppointments";
+import Recipets from "./Components/DashBoards/PatientDashBoard/MyRecipets/Recipets";
+import MediInfo from "./Components/DashBoards/DoctorDashBoard/GiveMediInfo/MediInfo";
 
 const App = () => {
   return (
@@ -46,6 +48,7 @@ const App = () => {
         <Route path="doctor/:id" element={<DoctorDetails />} />
         <Route path="BookAppointment" element={<BookAppointment />} />
         <Route path="MyAppointments" element={<MyAppointments />} />
+        <Route path="Myrecipet" element={<Recipets/>}/>
       </Route>
       {/* Doctor Dashboard */}
       <Route path="/DoctorDashboard" element={<DoctotLayout />}>
@@ -53,6 +56,7 @@ const App = () => {
         <Route path="Createprofile" element={<CreateProfile/>} />
         <Route path="Myprofile" element={<Myprofile/>}/>
         <Route path="PatientAppointments" element={<PatientAppointments/>}/>
+        <Route path="mediInfo" element={<MediInfo/>}/>
       </Route>
     </Routes>
   );

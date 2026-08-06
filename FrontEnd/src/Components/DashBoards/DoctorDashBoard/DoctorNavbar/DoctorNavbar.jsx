@@ -77,7 +77,15 @@ const DoctorNavbar = () => {
             <FaCalendarCheck /> Appointments
           </Link>
         </li>
-
+<li
+          className={
+            location.pathname === "/DoctorDashboard" ? "active" : ""
+          }
+        >
+          <Link to="/DoctorDashboard/mediInfo">
+            <FaCalendarCheck /> GiveRecipets
+          </Link>
+        </li>
         <li
           className={location.pathname === "/DoctorDashboard" ? "active" : ""}
         >
