@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { jwtDecode } from "jwt-decode";
 
-const API = "https://mediconnect-pro-gzv5.onrender.com/api";
+const API = "https://mediconnect-pro-fg3t.onrender.com/api";
 
 const CreateProfile = () => {
   const [doctor, setDoctor] = useState({

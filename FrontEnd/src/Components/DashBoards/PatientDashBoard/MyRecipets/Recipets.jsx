@@ -14,7 +14,7 @@ import {
   FaDownload,
 } from "react-icons/fa";
 
-const API_BASE = "https://mediconnect-pro-gzv5.onrender.com/api";
+const API_BASE = "https://mediconnect-pro-fg3t.onrender.com/api";
 
 const Recipets = () => {
   const [prescriptions, setPrescriptions] = useState([]);

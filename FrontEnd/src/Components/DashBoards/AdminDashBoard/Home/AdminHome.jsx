@@ -27,7 +27,7 @@ import "./AdminHome.css";
 
 ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const API_BASE = "https://mediconnect-pro-gzv5.onrender.com/api";
+const API_BASE = "https://mediconnect-pro-fg3t.onrender.com/api";
 const PALETTE = ["#14B8A6", "#0B1F3A", "#FF6B6B", "#F5A623", "#6366F1", "#22C55E", "#EC4899"];
 
 // Groups an array of records by a key, falling back to "General" when missing.

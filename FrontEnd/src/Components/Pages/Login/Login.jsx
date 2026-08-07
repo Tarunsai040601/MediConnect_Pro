@@ -70,7 +70,7 @@ const Login = ({ onSwitch, onLogin }) => {
       setLoading(true);
 
       const res = await axios.post(
-        "https://mediconnect-pro-gzv5.onrender.com/api/authRouter/Login",
+        "https://mediconnect-pro-fg3t.onrender.com/api/authRouter/Login",
         formData,
       );
 
