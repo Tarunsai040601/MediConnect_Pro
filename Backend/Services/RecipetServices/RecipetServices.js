@@ -116,12 +116,7 @@ const getByNameRecipet = async (req, res) => {
 
     const data = await knex(TableName)
       .withSchema(SchemaName)
-
-      .where(
-        "PatientName",
-
-        name,
-      );
+      .whereRaw('LOWER("PatientName") = LOWER(?)', [name]);
 
     return res.status(200).json({
       data,

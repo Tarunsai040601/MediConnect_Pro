@@ -36,7 +36,7 @@ const PatientNavBar = () => {
     confirmButtonText: "Yes, Logout",
   }).then((result) => {
     if (result.isConfirmed) {
-      localStorage.removeItem("patient_token");
+      localStorage.removeItem("patientToken");
 
       Swal.fire({
         icon: "success",
