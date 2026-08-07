@@ -17,7 +17,7 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa";
 
-const API_BASE = "https://mediconnect-pro-10ha.onrender.com/api";
+const API_BASE = "https://mediconnect-pro-gzv5.onrender.com/api";
 
 const BookAppointment = () => {
   const { state: doctor } = useLocation();

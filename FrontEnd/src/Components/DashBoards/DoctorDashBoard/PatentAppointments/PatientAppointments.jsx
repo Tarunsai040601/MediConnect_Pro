@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 
-const API = "https://mediconnect-pro-10ha.onrender.com/api";
+const API = "https://mediconnect-pro-gzv5.onrender.com/api";
 
 
 const PatientAppointments = () => {

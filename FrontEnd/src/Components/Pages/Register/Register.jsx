@@ -86,7 +86,7 @@ const Register = () => {
       setLoading(true);
 
       const res = await axios.post(
-        "https://mediconnect-pro-10ha.onrender.com/api/authRouter/Register",
+        "https://mediconnect-pro-gzv5.onrender.com/api/authRouter/Register",
         formData,
       );
 
