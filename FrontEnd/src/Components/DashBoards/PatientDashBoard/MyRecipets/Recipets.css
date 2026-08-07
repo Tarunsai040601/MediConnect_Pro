@@ -1,336 +1,382 @@
+/* ===== Prescription Receipt - Fully Responsive ===== */
+
+/* Container - holds all prescription cards */
 .prescription-container {
   width: 100%;
   min-height: 100vh;
   padding: 30px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 40px;
+  box-sizing: border-box;
 }
 
+/* Wrapper for each prescription + download button */
+.prescription-wrapper {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* The prescription bill card */
 .prescription-bill {
-  width: 750px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   background: white;
-  padding: 30px;
-
-  border-radius: 15px;
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-sizing: border-box;
 }
 
-/* Header */
-
-.prescription-header {
+/* ===== Header ===== */
+.hospital-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
-.prescription-header h1 {
+.hospital-header h1 {
+  font-size: 28px;
   margin: 0;
+  color: #1e40af;
+}
+
+.hospital-header p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.big-icon {
+  font-size: 52px;
   color: #2563eb;
-  font-size: 30px;
+  flex-shrink: 0;
 }
 
-.prescription-header p {
-  margin-top: 5px;
-  color: #666;
-}
-
-.prescription-icon {
-  font-size: 45px;
-  color: #2563eb;
-}
-
-.bill-divider {
+/* Divider */
+.prescription-bill hr {
+  border: none;
   height: 2px;
-  background: #ddd;
+  background: linear-gradient(to right, #2563eb, #93c5fd, #2563eb);
   margin: 20px 0;
 }
 
-/* Sections */
-
-.prescription-section {
-  margin-bottom: 25px;
+/* ===== Sections ===== */
+.section {
+  margin-top: 22px;
 }
 
-.prescription-section h3 {
+.section h3 {
   display: flex;
   align-items: center;
   gap: 8px;
-
+  font-size: 17px;
   color: #1e293b;
-
-  font-size: 18px;
-
-  margin-bottom: 15px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+  margin: 0 0 12px;
 }
 
-.details-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 20px;
-}
-
-.details-grid div {
-  background: var(--bg-main);
-
-  padding: 15px;
-
-  border-radius: 10px;
-}
-
-.details-grid span {
-  display: block;
-
-  color: var(--text-muted);
-
-  font-size: 14px;
-}
-
-.details-grid strong {
-  display: block;
-
-  margin-top: 6px;
-
-  font-size: 16px;
-}
-
-.diagnosis,
-.instructions {
-  background: var(--bg-main);
-
-  padding: 15px;
-
-  border-radius: 10px;
-
+.section p {
+  margin: 6px 0;
   color: #334155;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-.medicine-box {
-  border: 1px solid var(--border-color);
-
-  border-radius: 10px;
-
-  overflow: hidden;
+/* ===== Tables (Patient Info + Medicine) ===== */
+.section table {
+  width: 100%;
+  border-collapse: collapse;
 }
-
-.medicine-row {
-  display: flex;
-
-  justify-content: space-between;
-
-  padding: 15px;
-
-  border-bottom: 1px solid var(--border-color);
-}
-
-.medicine-row:last-child {
-  border-bottom: none;
-}
-
-.bill-footer {
-  text-align: center;
-
-  margin-top: 25px;
-
-  color: var(--text-muted);
-
-  font-size: 14px;
-}
-
-/* Responsive */
-
-@media (max-width: 768px) {
-  .prescription-container {
-    padding: 15px;
-  }
-
-  .prescription-bill {
-    width: 100%;
-
-    padding: 20px;
-  }
-
-  .prescription-header h1 {
-    font-size: 24px;
-  }
-
-  .prescription-icon {
-    font-size: 35px;
-  }
-
-  .details-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .medicine-row {
-    flex-direction: column;
-
-    gap: 8px;
-  }
-}
-
-@media (max-width: 420px) {
-  .prescription-header {
-    flex-direction: column;
-
-    gap: 15px;
-
-    text-align: center;
-  }
-
-  .prescription-bill {
-    padding: 15px;
-  }
-}
-.prescription-bill{
-
-width:800px;
-
-margin:30px auto;
-
-background:white;
-
-padding:35px;
-
-border-radius:10px;
-
-box-shadow:0 0 15px #ccc;
-
-font-family:Arial;
-
-}
-
-
-
-.hospital-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-}
-
-
-
-.hospital-header h1{
-
-font-size:32px;
-
-}
-
-
-
-.big-icon{
-
-font-size:60px;
-
-color:#2563eb;
-
-}
-
-
-
-.section{
-
-margin-top:25px;
-
-}
-
-
-
-.section h3{
-
-border-bottom:2px solid #ddd;
-
-padding-bottom:8px;
-
-}
-
-
-
-.section table{
-
-width:100%;
-
-border-collapse:collapse;
-
-}
-
-
 
 .section td,
 .medicine-table th,
-.medicine-table td{
-
-border:1px solid #ddd;
-
-padding:12px;
-
+.medicine-table td {
+  border: 1px solid #e2e8f0;
+  padding: 10px 14px;
+  font-size: 14px;
+  word-break: break-word;
 }
 
-
-
-.rx{
-
-font-size:45px;
-
-font-weight:bold;
-
-font-style:italic;
-
-margin:10px 0;
-
+.section td:first-child {
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  width: 40%;
 }
 
-
-
-.signature{
-
-text-align:right;
-
-margin-top:50px;
-
+.medicine-table th {
+  background: #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+  text-align: left;
 }
 
-
-
-.footer{
-
-text-align:center;
-
-margin-top:30px;
-
-padding-top:15px;
-
-border-top:1px solid #ccc;
-
+.medicine-table td {
+  color: #334155;
 }
 
+/* ===== Rx Symbol ===== */
+.rx {
+  font-size: 40px;
+  font-weight: bold;
+  font-style: italic;
+  color: #2563eb;
+  margin: 10px 0 5px;
+}
 
+/* ===== Signature ===== */
+.signature {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #64748b;
+}
 
-.download-btn{
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 13px;
+  color: #94a3b8;
+}
 
-display:block;
+/* ===== Download Button ===== */
+.download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto 0;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
 
-margin:20px auto;
+.download-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
 
-background:#2563eb;
+.download-btn:active {
+  transform: translateY(0);
+}
 
-color:white;
+/* ============================
+   RESPONSIVE - Tablet (≤768px)
+   ============================ */
+@media (max-width: 768px) {
+  .prescription-container {
+    padding: 20px 16px;
+    gap: 30px;
+  }
 
-border:none;
+  .prescription-bill {
+    padding: 24px;
+  }
 
-padding:12px 25px;
+  .hospital-header h1 {
+    font-size: 24px;
+  }
 
-border-radius:8px;
+  .hospital-header p {
+    font-size: 13px;
+  }
 
-cursor:pointer;
+  .big-icon {
+    font-size: 42px;
+  }
 
-font-size:16px;
+  .section h3 {
+    font-size: 16px;
+  }
 
+  .section td,
+  .medicine-table th,
+  .medicine-table td {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .rx {
+    font-size: 34px;
+  }
+
+  .signature {
+    margin-top: 30px;
+  }
+}
+
+/* ============================
+   RESPONSIVE - Mobile (≤576px)
+   ============================ */
+@media (max-width: 576px) {
+  .prescription-container {
+    padding: 12px 10px;
+    gap: 24px;
+  }
+
+  .prescription-bill {
+    padding: 18px 14px;
+    border-radius: 10px;
+  }
+
+  .hospital-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .hospital-header h1 {
+    font-size: 20px;
+  }
+
+  .big-icon {
+    font-size: 36px;
+  }
+
+  .section h3 {
+    font-size: 15px;
+    gap: 6px;
+  }
+
+  .section p {
+    font-size: 14px;
+  }
+
+  /* Stack table rows vertically on mobile */
+  .section table,
+  .section tbody,
+  .section tr,
+  .section td {
+    display: block;
+    width: 100%;
+  }
+
+  .section td {
+    border: none;
+    padding: 6px 0;
+  }
+
+  .section td:first-child {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 2px;
+    width: 100%;
+    white-space: normal;
+  }
+
+  .section td:last-child {
+    font-size: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .section tr:last-child td:last-child {
+    border-bottom: none;
+    padding-bottom: 6px;
+  }
+
+  /* Medicine table stacked */
+  .medicine-table,
+  .medicine-table thead,
+  .medicine-table tbody,
+  .medicine-table tr,
+  .medicine-table th,
+  .medicine-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .medicine-table thead {
+    display: none;
+  }
+
+  .medicine-table td {
+    border: none;
+    padding: 6px 0;
+    text-align: left;
+  }
+
+  .medicine-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .rx {
+    font-size: 30px;
+  }
+
+  .signature {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+  }
+
+  .footer {
+    font-size: 12px;
+  }
+
+  .download-btn {
+    max-width: 100%;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
+
+/* ============================
+   RESPONSIVE - Small Mobile (≤400px)
+   ============================ */
+@media (max-width: 400px) {
+  .prescription-container {
+    padding: 8px 6px;
+  }
+
+  .prescription-bill {
+    padding: 14px 10px;
+    border-radius: 8px;
+  }
+
+  .hospital-header h1 {
+    font-size: 18px;
+  }
+
+  .big-icon {
+    font-size: 30px;
+  }
+
+  .section h3 {
+    font-size: 14px;
+  }
+
+  .rx {
+    font-size: 26px;
+  }
+
+  .download-btn {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
 }

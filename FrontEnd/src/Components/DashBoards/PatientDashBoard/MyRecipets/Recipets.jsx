@@ -180,9 +180,9 @@ const Recipets = () => {
 
                   <tbody>
                     <tr>
-                      <td>{item.Medicines}</td>
+                      <td data-label="Medicine">{item.Medicines}</td>
 
-                      <td>{item.Dosage}</td>
+                      <td data-label="Dosage">{item.Dosage}</td>
                     </tr>
                   </tbody>
                 </table>
