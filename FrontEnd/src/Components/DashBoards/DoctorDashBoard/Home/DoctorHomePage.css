@@ -153,10 +153,13 @@
 
 .floating-card{
     position:absolute;
-    background:white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     padding:18px;
     border-radius:18px;
-    box-shadow:0 20px 40px rgba(0,0,0,.12);
+    box-shadow: var(--shadow-md);
     z-index:3;
     animation:floatCard 4s ease-in-out infinite;
 }

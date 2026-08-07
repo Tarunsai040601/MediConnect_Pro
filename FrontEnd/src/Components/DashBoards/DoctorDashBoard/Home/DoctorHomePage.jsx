@@ -11,7 +11,7 @@ const DoctorHomePage = () => {
   return (
     <div className="doctor-home">
 
-      <div className="doctor-home-left">
+      <div className="doctor-home-left" data-aos="fade-right">
         <span className="welcome-tag">
           👨‍⚕️ Welcome Doctor
         </span>
@@ -39,7 +39,7 @@ const DoctorHomePage = () => {
 
         <div className="doctor-stats">
 
-          <div className="stat-card">
+          <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
             <FaUserMd />
             <div>
               <h3>250+</h3>
@@ -47,7 +47,7 @@ const DoctorHomePage = () => {
             </div>
           </div>
 
-          <div className="stat-card">
+          <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
             <FaCalendarCheck />
             <div>
               <h3>35</h3>
@@ -55,7 +55,7 @@ const DoctorHomePage = () => {
             </div>
           </div>
 
-          <div className="stat-card">
+          <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
             <FaHeartbeat />
             <div>
               <h3>98%</h3>
@@ -67,7 +67,7 @@ const DoctorHomePage = () => {
 
       </div>
 
-      <div className="doctor-home-right">
+      <div className="doctor-home-right" data-aos="fade-left">
 
         <div className="circle-bg"></div>
 
@@ -75,19 +75,21 @@ const DoctorHomePage = () => {
           src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=80"
           alt="doctor"
           className="doctor-image"
+          data-aos="zoom-in"
+          data-aos-delay="200"
         />
 
-        <div className="floating-card top-card">
+        <div className="floating-card top-card" data-aos="fade-down" data-aos-delay="400">
           <p>Blood Pressure</p>
           <h3>124/80</h3>
         </div>
 
-        <div className="floating-card middle-card">
+        <div className="floating-card middle-card" data-aos="fade-left" data-aos-delay="500">
           <p>Today's Appointment</p>
           <h3>35 Patients</h3>
         </div>
 
-        <div className="floating-card bottom-card">
+        <div className="floating-card bottom-card" data-aos="fade-up" data-aos-delay="600">
           <p>AI Suggestions</p>
           <h3>Healthy Progress</h3>
         </div>

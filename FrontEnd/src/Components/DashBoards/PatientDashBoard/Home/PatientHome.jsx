@@ -103,25 +103,25 @@ const PatientHome = () => {
       {/* ================= STATS ================= */}
 
       <section className="stats-section">
-        <div className="stat-card">
+        <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
           <FaUserMd />
           <h2>120+</h2>
           <p>Doctors</p>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
           <FaCalendarCheck />
           <h2>24/7</h2>
           <p>Appointments</p>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
           <FaHeartbeat />
           <h2>100%</h2>
           <p>Patient Care</p>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
           <FaShieldAlt />
           <h2>Secure</h2>
           <p>Medical Data</p>
@@ -138,7 +138,7 @@ const PatientHome = () => {
 
         <div className="services-grid">
           {services.map((item, index) => (
-            <div className="service-card" key={index}>
+            <div className="service-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
               <div className="service-icon">{item.icon}</div>
 
               <h3>{item.title}</h3>
@@ -162,7 +162,7 @@ const PatientHome = () => {
         </div>
 
         <div className="why-container">
-          <div className="why-card">
+          <div className="why-card" data-aos="zoom-in" data-aos-delay="100">
             <FaUserMd />
             <h3>Expert Doctors</h3>
             <p>
@@ -171,7 +171,7 @@ const PatientHome = () => {
             </p>
           </div>
 
-          <div className="why-card">
+          <div className="why-card" data-aos="zoom-in" data-aos-delay="200">
             <FaStethoscope />
             <h3>Modern Treatment</h3>
             <p>
@@ -179,7 +179,7 @@ const PatientHome = () => {
             </p>
           </div>
 
-          <div className="why-card">
+          <div className="why-card" data-aos="zoom-in" data-aos-delay="300">
             <FaShieldAlt />
             <h3>Secure Records</h3>
             <p>

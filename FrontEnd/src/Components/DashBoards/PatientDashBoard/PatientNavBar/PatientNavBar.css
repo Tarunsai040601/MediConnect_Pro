@@ -11,7 +11,10 @@
 .patient-navbar {
   width: 100%;
   height: 75px;
-  background: linear-gradient(135deg, var(--primary), #1976d2);
+  background: rgba(15, 76, 129, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -20,7 +23,8 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
 }
 
 .patient-logo h2 {

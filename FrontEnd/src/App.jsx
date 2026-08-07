@@ -24,8 +24,14 @@ import Myprofile from "./Components/DashBoards/DoctorDashBoard/Myprofile/Myprofi
 import PatientAppointments from "./Components/DashBoards/DoctorDashBoard/PatentAppointments/PatientAppointments";
 import Recipets from "./Components/DashBoards/PatientDashBoard/MyRecipets/Recipets";
 import MediInfo from "./Components/DashBoards/DoctorDashBoard/GiveMediInfo/MediInfo";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const App = () => {
+  React.useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Register />} />
