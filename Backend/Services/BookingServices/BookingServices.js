@@ -53,17 +53,14 @@ const MyAppointments = async (req, res) => {
 // ============================get all patients=================
 const GetallPatients = async (req, res) => {
   try {
+    // Use case-insensitive match for Role to handle inconsistently cased values
     const allPatients = await knex(GetAllPatients)
       .withSchema(SchemaName)
-      .where({ Role: "Patient" })
+      .whereRaw('LOWER("Role") = ?', ["patient"])
       .select("id", "Name", "Email", "Role");
 
-    if (allPatients.length === 0) {
-      return res.status(404).json({
-        message: "No Patients Available up to now",
-      });
-    }
-
+    // Always return 200 with an array (possibly empty). Frontend expects a list
+    // under 'details' and handles empty lists gracefully.
     return res.status(200).json({
       message: "All Patients",
       details: allPatients,
@@ -357,8 +354,8 @@ const DoctorAppointments = async (req, res) => {
         "b.AppointmentDate",
         "b.AppointmentTime",
         "b.BookingStatus",
-        "b.RejectReason",
-
+        // Note: some DBs may not have a RejectReason column on the bookings table.
+        // Avoid selecting it directly to prevent SQL errors when the column is absent.
         "p.id as PatientId",
         "p.Name as PatientName",
         "p.Email as PatientEmail"
