@@ -324,15 +324,15 @@ const DeleteBooking = async (req, res) => {
 
 const DoctorAppointments = async (req, res) => {
   try {
-    const { id } = req.users;
-    console.log("iddata:",req.users)
+    const { id, name } = req.users;
+    console.log("iddata:", req.users);
 
-    // Find Doctor using JWT AuthId
+    // Find Doctor using JWT AuthId (AuthId stores the user's Name)
     const doctor = await knex(DoctorTable)
       .withSchema(SchemaName)
-      .where({ AuthId: id })
+      .where({ AuthId: name })
       .first();
-      console.log("DOCTOR DATA:", doctor);
+    console.log("DOCTOR DATA:", doctor);
 
     if (!doctor) {
       return res.status(404).json({
