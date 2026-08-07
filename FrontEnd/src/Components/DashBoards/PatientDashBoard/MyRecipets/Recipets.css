@@ -3,32 +3,35 @@
 /* Container - holds all prescription cards */
 .prescription-container {
   width: 100%;
-  min-height: 100vh;
-  padding: 30px;
+  min-height: 80vh;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Wrapper for each prescription + download button */
 .prescription-wrapper {
   width: 100%;
   max-width: 800px;
+  box-sizing: border-box;
 }
 
 /* The prescription bill card */
 .prescription-bill {
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
   background: white;
-  padding: 35px;
+  padding: 32px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Arial, sans-serif;
   box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ===== Header ===== */
@@ -36,23 +39,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .hospital-header h1 {
-  font-size: 28px;
+  font-size: 26px;
   margin: 0;
   color: #1e40af;
+  word-break: break-word;
 }
 
 .hospital-header p {
   margin: 4px 0 0;
   color: #64748b;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .big-icon {
-  font-size: 52px;
+  font-size: 48px;
   color: #2563eb;
   flex-shrink: 0;
 }
@@ -62,52 +67,59 @@
   border: none;
   height: 2px;
   background: linear-gradient(to right, #2563eb, #93c5fd, #2563eb);
-  margin: 20px 0;
+  margin: 16px 0;
 }
 
 /* ===== Sections ===== */
 .section {
-  margin-top: 22px;
+  margin-top: 20px;
 }
 
 .section h3 {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 17px;
+  font-size: 16px;
   color: #1e293b;
   border-bottom: 2px solid #e2e8f0;
   padding-bottom: 8px;
   margin: 0 0 12px;
+  flex-wrap: wrap;
 }
 
 .section p {
   margin: 6px 0;
   color: #334155;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
+  word-break: break-word;
 }
 
 /* ===== Tables (Patient Info + Medicine) ===== */
 .section table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .section td,
 .medicine-table th,
 .medicine-table td {
   border: 1px solid #e2e8f0;
-  padding: 10px 14px;
-  font-size: 14px;
+  padding: 8px 10px;
+  font-size: 13px;
   word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .section td:first-child {
   font-weight: 600;
   color: #475569;
-  white-space: nowrap;
   width: 40%;
+}
+
+.medicine-table {
+  table-layout: fixed;
 }
 
 .medicine-table th {
@@ -123,28 +135,28 @@
 
 /* ===== Rx Symbol ===== */
 .rx {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
   font-style: italic;
   color: #2563eb;
-  margin: 10px 0 5px;
+  margin: 8px 0 4px;
 }
 
 /* ===== Signature ===== */
 .signature {
   text-align: right;
-  margin-top: 40px;
-  font-size: 14px;
+  margin-top: 35px;
+  font-size: 13px;
   color: #64748b;
 }
 
 /* ===== Footer ===== */
 .footer {
   text-align: center;
-  margin-top: 25px;
-  padding-top: 15px;
+  margin-top: 20px;
+  padding-top: 12px;
   border-top: 1px solid #e2e8f0;
-  font-size: 13px;
+  font-size: 12px;
   color: #94a3b8;
 }
 
@@ -156,16 +168,17 @@
   gap: 8px;
   width: 100%;
   max-width: 280px;
-  margin: 20px auto 0;
+  margin: 16px auto 0;
   background: #2563eb;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   transition: background 0.2s ease, transform 0.15s ease;
+  box-sizing: border-box;
 }
 
 .download-btn:hover {
@@ -182,43 +195,39 @@
    ============================ */
 @media (max-width: 768px) {
   .prescription-container {
-    padding: 20px 16px;
-    gap: 30px;
+    padding: 16px 12px;
+    gap: 28px;
   }
 
   .prescription-bill {
-    padding: 24px;
+    padding: 22px 18px;
   }
 
   .hospital-header h1 {
-    font-size: 24px;
-  }
-
-  .hospital-header p {
-    font-size: 13px;
+    font-size: 22px;
   }
 
   .big-icon {
-    font-size: 42px;
+    font-size: 38px;
   }
 
   .section h3 {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .section td,
   .medicine-table th,
   .medicine-table td {
-    padding: 8px 10px;
-    font-size: 13px;
+    padding: 7px 8px;
+    font-size: 12px;
   }
 
   .rx {
-    font-size: 34px;
+    font-size: 30px;
   }
 
   .signature {
-    margin-top: 30px;
+    margin-top: 25px;
   }
 }
 
@@ -227,74 +236,102 @@
    ============================ */
 @media (max-width: 576px) {
   .prescription-container {
-    padding: 12px 10px;
-    gap: 24px;
+    padding: 10px 6px;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  .prescription-wrapper {
+    max-width: 100%;
   }
 
   .prescription-bill {
-    padding: 18px 14px;
+    padding: 16px 12px;
     border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   }
 
   .hospital-header {
     flex-direction: column;
     text-align: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .hospital-header h1 {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .hospital-header p {
+    font-size: 12px;
   }
 
   .big-icon {
-    font-size: 36px;
+    font-size: 32px;
+  }
+
+  .prescription-bill hr {
+    margin: 12px 0;
+  }
+
+  .section {
+    margin-top: 14px;
   }
 
   .section h3 {
-    font-size: 15px;
-    gap: 6px;
+    font-size: 14px;
+    gap: 5px;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .section p {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   /* Stack table rows vertically on mobile */
+  .section table {
+    table-layout: auto;
+  }
+
   .section table,
   .section tbody,
   .section tr,
   .section td {
     display: block;
-    width: 100%;
+    width: 100% !important;
   }
 
   .section td {
     border: none;
-    padding: 6px 0;
+    padding: 4px 0;
   }
 
   .section td:first-child {
-    font-size: 12px;
+    font-size: 11px;
     color: #94a3b8;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding-bottom: 2px;
-    width: 100%;
+    padding-bottom: 1px;
+    width: 100% !important;
     white-space: normal;
   }
 
   .section td:last-child {
-    font-size: 15px;
-    padding-bottom: 12px;
+    font-size: 14px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #f1f5f9;
   }
 
   .section tr:last-child td:last-child {
     border-bottom: none;
-    padding-bottom: 6px;
+    padding-bottom: 4px;
   }
 
   /* Medicine table stacked */
+  .medicine-table {
+    table-layout: auto;
+  }
+
   .medicine-table,
   .medicine-table thead,
   .medicine-table tbody,
@@ -302,7 +339,7 @@
   .medicine-table th,
   .medicine-table td {
     display: block;
-    width: 100%;
+    width: 100% !important;
   }
 
   .medicine-table thead {
@@ -311,7 +348,7 @@
 
   .medicine-table td {
     border: none;
-    padding: 6px 0;
+    padding: 4px 0;
     text-align: left;
   }
 
@@ -319,30 +356,34 @@
     content: attr(data-label);
     font-weight: 600;
     color: #64748b;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     display: block;
     margin-bottom: 2px;
   }
 
   .rx {
-    font-size: 30px;
+    font-size: 26px;
+    margin: 6px 0 2px;
   }
 
   .signature {
     text-align: center;
-    margin-top: 25px;
-    font-size: 13px;
+    margin-top: 20px;
+    font-size: 12px;
   }
 
   .footer {
-    font-size: 12px;
+    font-size: 11px;
+    margin-top: 14px;
+    padding-top: 10px;
   }
 
   .download-btn {
     max-width: 100%;
-    font-size: 14px;
-    padding: 12px 16px;
+    font-size: 13px;
+    padding: 10px 14px;
+    margin-top: 12px;
   }
 }
 
@@ -351,32 +392,49 @@
    ============================ */
 @media (max-width: 400px) {
   .prescription-container {
-    padding: 8px 6px;
+    padding: 6px 4px;
+    gap: 16px;
   }
 
   .prescription-bill {
-    padding: 14px 10px;
+    padding: 12px 8px;
     border-radius: 8px;
   }
 
   .hospital-header h1 {
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  .hospital-header p {
+    font-size: 11px;
   }
 
   .big-icon {
-    font-size: 30px;
-  }
-
-  .section h3 {
-    font-size: 14px;
-  }
-
-  .rx {
     font-size: 26px;
   }
 
-  .download-btn {
+  .section h3 {
     font-size: 13px;
-    padding: 10px 12px;
+  }
+
+  .section p {
+    font-size: 12px;
+  }
+
+  .section td:first-child {
+    font-size: 10px;
+  }
+
+  .section td:last-child {
+    font-size: 13px;
+  }
+
+  .rx {
+    font-size: 22px;
+  }
+
+  .download-btn {
+    font-size: 12px;
+    padding: 10px 10px;
   }
 }
